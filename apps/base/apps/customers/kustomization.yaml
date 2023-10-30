@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: apps
+resources:
+  - api.yaml
+  - api-versioned.yaml
+  - spec.yaml
+  - customer.yaml
+  - customer-v2.yaml
+  - customer-v3.yaml
+  - customer-v4.yaml
