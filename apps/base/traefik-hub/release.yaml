@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: traefik-hub
+  namespace: traefik-hub
+spec:
+  releaseName: traefik-hub
+  chart:
+    spec:
+      chart: traefik-hub
+      sourceRef:
+        kind: HelmRepository
+        name: traefik-hub
+  interval: 50m
+  install:
+    remediation:
+      retries: 3
+  values:
+    additionalArguments:
+      - --hub.metrics.opentelemetry.insecure
+      - --hub.metrics.opentelemetry.address=prometheus.monitoring:9090
+      - --hub.metrics.opentelemetry.path=/api/v1/otlp/v1/metrics
+    hub:
+      metrics:
+        opentelemetry:
+          insecure: true
+          address: prometheus.monitoring:9090
+          path: /api/v1/otlp/v1/metrics
+    service:
+      type: LoadBalancer

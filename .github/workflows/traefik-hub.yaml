@@ -1,0 +1,65 @@
+name: Traefik Hub Static Analyzer
+
+on:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Traefik Hub CRDs with hub-static-analyzer
+        uses: traefik/hub-static-analyzer-action@main
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          lint: true
+          lint-format: checkstyle
+          lint-output-file: ./output.xml
+
+      - name: Annotate code
+        if: ${{ !cancelled() }}
+        uses: Juuxel/publish-checkstyle-report@v1
+        with:
+          reports: |
+            ./output.xml
+
+  diff:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Lint Traefik Hub CRDs with hub-static-analyzer
+        uses: traefik/hub-static-analyzer-action@main
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          diff: true
+          diff-range: "origin/${GITHUB_BASE_REF}...origin/${GITHUB_HEAD_REF}"
+          diff-output-file: ./output.md
+
+      - name: Prepare report
+        shell: bash
+        run: |
+          set -u
+
+          echo "# Traefik Hub Report:" > header.md
+          echo "" >> header.md
+          echo "The following changes have been detected." >> header.md
+          echo "" >> header.md
+
+      - name: Write report
+        if: ${{ hashFiles('./output.md') != ''}}
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: |
+            header.md
+            output.md

@@ -11,7 +11,7 @@ spec:
     branch: master
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/mmatur/hub-kubecon-demo
+  url: ssh://git@github.com/traefik/hub-kubecon-demo
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -21,6 +21,50 @@ metadata:
 spec:
   interval: 10m0s
   path: ./clusters/kubecon
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kubecon-apps
+  namespace: flux-system
+spec:
+  interval: 10s
+  path: ./apps/base/apps
+  prune: true
+  dependsOn:
+    - name: kubecon-traefik-hub
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kubecon-monitoring
+  namespace: flux-system
+spec:
+  interval: 10s
+  path: ./apps/base/monitoring
+  prune: true
+  dependsOn:
+    - name: kubecon-traefik-hub
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: kubecon-traefik-hub
+  namespace: flux-system
+spec:
+  interval: 10s
+  path: ./apps/base/traefik-hub
   prune: true
   sourceRef:
     kind: GitRepository

@@ -1,0 +1,85 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-core
+  namespace: monitoring
+  labels:
+    app: prometheus
+    component: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      name: prometheus-main
+      labels:
+        app: prometheus
+        component: core
+    spec:
+      serviceAccountName: prometheus-k8s
+      securityContext:
+        fsGroup: 2000
+        runAsUser: 1000
+        runAsNonRoot: true
+      containers:
+        - name: prometheus
+          image: prom/prometheus:v2.48.0-rc.1
+          args:
+            - '--enable-feature=otlp-write-receiver'
+            - '--storage.tsdb.retention=60d'
+            - '--storage.tsdb.path="/prometheus/data/"'
+            - '--web.enable-lifecycle'
+            - '--config.file=/prometheus/config/prometheus.yaml'
+          ports:
+            - name: web
+              containerPort: 80
+            - name: webui
+              containerPort: 9090
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500M
+            limits:
+              cpu: 500m
+              memory: 500M
+          volumeMounts:
+            - name: config-volume
+              mountPath: /prometheus/config
+            - name: rules-volume
+              mountPath: /prometheus/rules
+            - name: prometheus-storage
+              mountPath: /prometheus
+        - name: configmap-reload
+          image: jimmidyson/configmap-reload:v0.2.2
+          imagePullPolicy: IfNotPresent
+          args:
+            - --volume-dir=/etc/config
+            - --volume-dir=/etc/rules
+            - --webhook-url=http://localhost:9090/-/reload
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/config
+              readOnly: true
+            - name: rules-volume
+              mountPath: /etc/rules
+              readOnly: true
+          resources:
+            limits:
+              cpu: 10m
+              memory: 10Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+      volumes:
+        - name: prometheus-storage
+          persistentVolumeClaim:
+            claimName: prometheus-storage
+        - name: config-volume
+          configMap:
+            name: prometheus-core
+        - name: rules-volume
+          configMap:
+            name: prometheus-rules

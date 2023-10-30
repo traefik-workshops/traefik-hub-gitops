@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-rules
+  namespace: monitoring
+data:
+  general.yaml: |
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-core
+  namespace: monitoring
+data:
+  prometheus.yaml: |
+    global:
+      scrape_interval: 10s
+      scrape_timeout: 10s
+      evaluation_interval: 10s
+
+    # Prom is deployed statically, not through the Prom Operator, so instead of using a ServiceMonitor or an annotation, we add the jobs here
+    # @see: https://www.infracloud.io/blogs/prometheus-operator-helm-guide/#how-does-prometheus-find-all-the-targets-to-monitor-and-scrape
+    scrape_configs:
+      # Scrape prometheus itself, the job name is added as a label `job=<job_name>` to any timeseries scraped from this config
+      - job_name: 'prometheus'
+        # metrics_path defaults to '/metrics'
+        # scheme defaults to 'http'.
+        static_configs:
+          - targets: ['localhost:9090']
