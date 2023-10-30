@@ -20,7 +20,7 @@ kind: APIRateLimit
 metadata:
   name: support-ratelimit
 spec:
-  limit: 15
+  limit: 1
   period: 1m
   groups:
     - support

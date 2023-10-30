@@ -6,7 +6,6 @@ metadata:
 spec:
   groups:
     - internal
-    - powpow
   apiSelector:
     matchLabels:
       module: crm
