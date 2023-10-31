@@ -14,3 +14,4 @@ spec:
         - name: grafana
           port: 3000
           namespace: monitoring
+  tls: {}
