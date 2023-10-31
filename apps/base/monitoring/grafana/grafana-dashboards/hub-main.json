@@ -20,13 +20,12 @@
         },
         "enable": true,
         "iconColor": "red",
-        "name": "Commits",
+        "name": "GitHub",
         "target": {
           "limit": 100,
           "matchAny": false,
           "options": {
-            "gitRef": "master",
-            "query": ""
+            "gitRef": "master"
           },
           "owner": "traefik",
           "queryType": "Commits",
@@ -131,7 +130,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": []
@@ -197,7 +196,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],
@@ -446,7 +445,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],
@@ -568,7 +567,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],
@@ -674,7 +673,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],
@@ -780,7 +779,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],
@@ -886,7 +885,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
             }
           ],
           "mappings": [],

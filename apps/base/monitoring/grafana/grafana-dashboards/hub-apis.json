@@ -181,7 +181,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
             }
           ],
           "mappings": []
@@ -254,7 +254,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
             }
           ],
           "mappings": []
@@ -328,7 +328,7 @@
           "links": [
             {
               "title": "",
-              "url": "http://grafana.docker.localhost/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
+              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038720/users?orgId=1&refresh=5s&var-email=${__field.labels.email}"
             }
           ],
           "mappings": []
