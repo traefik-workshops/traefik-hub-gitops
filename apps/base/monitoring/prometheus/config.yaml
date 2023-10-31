@@ -44,6 +44,8 @@ data:
             action: replace
             replacement: $1
             target_label: app
+          - target_label: namespace
+            source_labels: [__meta_kubernetes_namespace]
         kubernetes_sd_configs:
           - role: pod
             namespaces:
