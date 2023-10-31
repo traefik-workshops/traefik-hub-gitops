@@ -14,6 +14,6 @@ spec:
       path: /openapi.yaml
       port:
         number: 3000
-    name: employee-app-error
+    name: employee-app
     port:
       number: 3000
