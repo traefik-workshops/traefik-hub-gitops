@@ -12,6 +12,28 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "grafana-github-datasource",
+          "uid": "e0ec683e-4eb7-43cf-bc1e-b7faca0547d7"
+        },
+        "enable": true,
+        "iconColor": "red",
+        "name": "Commits",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "options": {
+            "gitRef": "master",
+            "query": ""
+          },
+          "owner": "traefik",
+          "queryType": "Commits",
+          "repository": "hub-kubecon-demo",
+          "tags": [],
+          "type": "dashboard"
+        }
       }
     ]
   },
