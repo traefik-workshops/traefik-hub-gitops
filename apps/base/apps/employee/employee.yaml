@@ -65,3 +65,102 @@ spec:
   selector:
     app: employee-app
 
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app-error
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-app-error
+  template:
+    metadata:
+      labels:
+        app: employee-app
+    spec:
+      containers:
+        - name: api
+          image: mmatur/traefik-hub:kubecon
+          args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "40"]
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: api-data
+              mountPath: /api
+            - name: openapi
+              mountPath: /public
+      volumes:
+        - name: api-data
+          configMap:
+            name: employee-data
+        - name: openapi
+          configMap:
+            name: employee-apispec
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-app-error
+  namespace: apps
+  labels:
+    app: employee-app-error
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      name: api
+  selector:
+    app: employee-app-error
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-app-latency
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-app-latency
+  template:
+    metadata:
+      labels:
+        app: employee-app
+    spec:
+      containers:
+        - name: api
+          image: mmatur/traefik-hub:kubecon
+          args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-latency", "400ms"]
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: api-data
+              mountPath: /api
+            - name: openapi
+              mountPath: /public
+      volumes:
+        - name: api-data
+          configMap:
+            name: employee-data
+        - name: openapi
+          configMap:
+            name: employee-apispec
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-app-latency
+  namespace: apps
+  labels:
+    app: employee-app-latency
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      name: api
+  selector:
+    app: employee-app-latency
