@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-GW_DOMAIN="exclusive-quokka-s9q2my.b0mlgjly.traefikhub.io"
+#GW_DOMAIN="exclusive-quokka-s9q2my.b0mlgjly.traefikhub.io"
 
 random() {
 	NUMBER=$RANDOM
