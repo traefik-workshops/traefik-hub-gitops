@@ -37,7 +37,7 @@ kind: APIRateLimit
 metadata:
   name: fallback-ratelimit
 spec:
-  limit: 2000
+  limit: 2
   period: 65s
   anyGroups: true
   apiSelector: {}
