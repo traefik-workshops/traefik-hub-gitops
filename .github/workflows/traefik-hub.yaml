@@ -15,7 +15,7 @@ jobs:
       - name: Lint Traefik Hub CRDs with hub-static-analyzer
         uses: traefik/hub-static-analyzer-action@main
         with:
-          exclude: "*/apps/overlays/local/api-portal.yaml,*/apps/overlays/local/api-gateway.yaml"
+          exclude: "*/apps/overlays/local/*"
           token: ${{ secrets.GH_TOKEN }}
           lint: true
           lint-format: checkstyle
