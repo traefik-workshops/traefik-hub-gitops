@@ -20,15 +20,26 @@
         },
         "enable": true,
         "iconColor": "red",
-        "name": "GitHub",
+        "mappings": {
+          "text": {
+            "source": "field",
+            "value": "url"
+          },
+          "title": {
+            "source": "field",
+            "value": "title"
+          }
+        },
+        "name": "Pull Requests Merged",
         "target": {
           "limit": 100,
           "matchAny": false,
           "options": {
-            "gitRef": "master"
+            "gitRef": "master",
+            "timeField": 2
           },
           "owner": "traefik",
-          "queryType": "Commits",
+          "queryType": "Pull_Requests",
           "repository": "hub-kubecon-demo",
           "tags": [],
           "type": "dashboard"
@@ -995,6 +1006,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }

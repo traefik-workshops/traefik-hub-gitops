@@ -12,6 +12,38 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "grafana-github-datasource",
+          "uid": "e0ec683e-4eb7-43cf-bc1e-b7faca0547d7"
+        },
+        "enable": true,
+        "iconColor": "red",
+        "mappings": {
+          "text": {
+            "source": "field",
+            "value": "url"
+          },
+          "title": {
+            "source": "field",
+            "value": "title"
+          }
+        },
+        "name": "Pull Requests Merged",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "options": {
+            "query": "",
+            "timeField": 2
+          },
+          "owner": "traefik",
+          "queryType": "Pull_Requests",
+          "repository": "hub-kubecon-demo",
+          "tags": [],
+          "type": "dashboard"
+        }
       }
     ]
   },
@@ -672,7 +704,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
@@ -716,6 +748,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 1,
+  "version": 3,
   "weekStart": ""
 }
