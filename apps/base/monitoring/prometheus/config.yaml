@@ -39,7 +39,6 @@ data:
             regex: ([^:]+)(?::\d+)?;(\d+)
             replacement: $1:$2
             target_label: __address__
-            # Add the version label extracted from the pod label version.
           - source_labels: [__meta_kubernetes_pod_label_app]
             action: replace
             replacement: $1
