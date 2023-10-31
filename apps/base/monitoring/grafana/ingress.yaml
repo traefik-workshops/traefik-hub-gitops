@@ -6,7 +6,7 @@ metadata:
   namespace: monitoring
 spec:
   entryPoints:
-    - web
+    - websecure
   routes:
     - kind: Rule
       match: Host(`grafana.kubecon.demo.traefiklabs.tech`)
