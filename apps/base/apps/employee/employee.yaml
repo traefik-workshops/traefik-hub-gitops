@@ -34,7 +34,7 @@ spec:
       containers:
         - name: api
           image: mmatur/traefik-hub:kubecon
-          args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "3"]
+          args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "80"]
           imagePullPolicy: Always
           volumeMounts:
           - name: api-data
