@@ -23,8 +23,8 @@ spec:
             - name: GW_DOMAIN
               value: gateway.kubecon.demo.traefiklabs.tech
             - name: TOKEN
-              value:
-          imagePullPolicy: IfNotPresent
+              value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa
+          imagePullPolicy: Always
           volumeMounts:
           - name: data
             mountPath: /data
@@ -32,3 +32,4 @@ spec:
         - name: data
           configMap:
             name: traffic-data
+            defaultMode: 0777

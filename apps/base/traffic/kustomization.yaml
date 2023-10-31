@@ -8,6 +8,6 @@ resources:
 configMapGenerator:
   - behavior: create
     files:
-      - traffic.sh=../../../traffic.sh
+      - traffic.sh=./scripts/traffic.sh
     name: traffic-data
     namespace: traffic
