@@ -178,9 +178,9 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "",
-          "format": "time_series",
+          "exemplar": false,
+          "expr": "count by(email) (traefik_hub_api_requests_total{api_name=~\"$api_name\"})",
+          "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -704,7 +704,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "schemaVersion": 38,
   "tags": [],
   "templating": {
@@ -712,9 +712,9 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
-          "text": "employee-api",
-          "value": "employee-api"
+          "selected": true,
+          "text": "customer-api",
+          "value": "customer-api"
         },
         "datasource": {
           "type": "prometheus",
@@ -748,6 +748,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
