@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-app
+  namespace: traffic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traffic-app
+  template:
+    metadata:
+      labels:
+        app: traffic-app
+    spec:
+      containers:
+        - name: traffic
+          image: mmatur/tools:latest
+          args:
+            - /data/traffic.sh
+          env:
+            - name: GW_DOMAIN
+              value: gateway.kubecon.demo.traefiklabs.tech
+            - name: TOKEN
+              value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: data
+            mountPath: /data
+      volumes:
+        - name: data
+          configMap:
+            name: traffic-data
+            defaultMode: 0777

@@ -38,3 +38,11 @@ data:
         options:
           path: /dashboards/hub
           foldersFromFilesStructure: false
+      - name: Flux Dashboards
+        folder: Flux
+        type: file
+        orgId: 1
+        updateIntervalSeconds: 10
+        options:
+          path: /dashboards/flux
+          foldersFromFilesStructure: false      

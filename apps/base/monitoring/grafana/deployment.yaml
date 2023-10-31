@@ -59,6 +59,8 @@ spec:
               name: grafana-dashboard-config
             - mountPath: /dashboards/hub
               name: grafana-hub-dashboards
+            - mountPath: /dashboards/flux
+              name: grafana-flux-dashboards
       volumes:
         - name: grafana-pv
           persistentVolumeClaim:
@@ -75,4 +77,8 @@ spec:
           configMap:
             defaultMode: 420
             name: grafana-hub-dashboards
+        - name: grafana-flux-dashboards
+          configMap:
+            defaultMode: 420
+            name: grafana-flux-dashboards
 

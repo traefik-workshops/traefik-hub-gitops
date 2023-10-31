@@ -11,12 +11,16 @@ resources:
 configMapGenerator:
   - behavior: create
     files:
-      - dashboard-hub.json=grafana-dashboards/dashboard-hub.json
-      - hub-apis.json=grafana-dashboards/hub-apis.json
-      - hub-main.json=grafana-dashboards/hub-main.json
-      - hub-users.json=grafana-dashboards/hub-users.json
-      - cluster.json=grafana-dashboards/cluster.json
-      - control-plane.json=grafana-dashboards/control-plane.json
-      - logs.json=grafana-dashboards/logs.json
+      - dashboard-hub.json=grafana-dashboards/hub/dashboard-hub.json
+      - hub-apis.json=grafana-dashboards/hub/hub-apis.json
+      - hub-main.json=grafana-dashboards/hub/hub-main.json
+      - hub-users.json=grafana-dashboards/hub/hub-users.json
     name: grafana-hub-dashboards
+    namespace: monitoring
+  - behavior: create
+    files:
+      - cluster.json=grafana-dashboards/flux/cluster.json
+      - control-plane.json=grafana-dashboards/flux/control-plane.json
+      - logs.json=grafana-dashboards/flux/logs.json
+    name: grafana-flux-dashboards
     namespace: monitoring
