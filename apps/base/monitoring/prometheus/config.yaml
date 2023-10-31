@@ -46,6 +46,8 @@ data:
             target_label: app
           - target_label: namespace
             source_labels: [__meta_kubernetes_namespace]
+          - target_label: pod
+            source_labels: [__meta_kubernetes_pod_name]
         kubernetes_sd_configs:
           - role: pod
             namespaces:
