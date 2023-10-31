@@ -75,7 +75,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employee-app-error
+      app: employee-app
   template:
     metadata:
       labels:
@@ -125,7 +125,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employee-app-latency
+      app: employee-app
   template:
     metadata:
       labels:
