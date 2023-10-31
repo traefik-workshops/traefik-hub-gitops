@@ -542,7 +542,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))",
+          "expr": "sum(rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -557,7 +557,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m]))",
+          "expr": "sum(rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))",
           "hide": false,
           "instant": false,
           "legendFormat": "Non 200 Requests",
@@ -680,9 +680,9 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
-          "text": "flight-api",
-          "value": "flight-api"
+          "selected": false,
+          "text": "employee-api",
+          "value": "employee-api"
         },
         "datasource": {
           "type": "prometheus",
