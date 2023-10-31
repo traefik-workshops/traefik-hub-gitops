@@ -75,11 +75,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employee-app
+      app: employee-app-error
   template:
     metadata:
       labels:
-        app: employee-app
+        app: employee-app-error
     spec:
       containers:
         - name: api
@@ -125,11 +125,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employee-app
+      app: employee-app-latency
   template:
     metadata:
       labels:
-        app: employee-app
+        app: employee-app-latency
     spec:
       containers:
         - name: api
