@@ -29,3 +29,23 @@ data:
         # scheme defaults to 'http'.
         static_configs:
           - targets: ['localhost:9090']
+      - job_name: 'flux-system'
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+            action: keep
+            regex: true
+          - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+            action: replace
+            regex: ([^:]+)(?::\d+)?;(\d+)
+            replacement: $1:$2
+            target_label: __address__
+            # Add the version label extracted from the pod label version.
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: replace
+            replacement: $1
+            target_label: app
+        kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+                - flux-system
