@@ -497,7 +497,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 8,
         "w": 8,
         "x": 16,
         "y": 0
@@ -624,7 +624,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 1,
+      "id": 12,
       "interval": "10s",
       "options": {
         "legend": {
@@ -646,7 +646,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m])) > 0",
+          "expr": "100*sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))/sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -656,7 +656,7 @@
           "useBackend": false
         }
       ],
-      "title": "Requests per API",
+      "title": "Error rate per API",
       "type": "timeseries"
     },
     {
@@ -833,114 +833,8 @@
       "gridPos": {
         "h": 9,
         "w": 8,
-        "x": 0,
-        "y": 17
-      },
-      "id": 12,
-      "interval": "10s",
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "disableTextWrap": false,
-          "editorMode": "code",
-          "expr": "100*sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))/sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m]))",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
-          "instant": false,
-          "legendFormat": "{{api_name}}",
-          "range": true,
-          "refId": "A",
-          "useBackend": false
-        }
-      ],
-      "title": "Error rate per API",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "links": [
-            {
-              "title": "",
-              "url": "/d/bbc789b4-e88e-42a1-b969-1ce2b0038725/api?orgId=1&refresh=5s&var-api_name=${__field.labels.api_name}"
-            }
-          ],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
-        "y": 17
+        "x": 16,
+        "y": 8
       },
       "id": 13,
       "interval": "10s",
@@ -1028,6 +922,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
