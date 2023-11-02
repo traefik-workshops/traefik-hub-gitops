@@ -5,7 +5,7 @@ metadata:
   name: crm-user-ratelimit
 spec:
   limit: 2 # 2 requests
-  period: 5s # 5 seconds
+  period: 50s # 5 seconds
   groups:
     - crm-user
   apiSelector:
