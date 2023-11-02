@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traffic-app
+  name: traffic-app-michael
   namespace: traffic
 spec:
   replicas: 1
@@ -38,7 +38,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traffic-app
+  name: traffic-app-julien
   namespace: traffic
 spec:
   replicas: 1
