@@ -72,7 +72,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
@@ -219,7 +220,8 @@
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
@@ -288,14 +290,15 @@
               },
               {
                 "color": "#EAB839",
-                "value": 2
+                "value": 2.5
               },
               {
                 "color": "red",
-                "value": 2.5
+                "value": 5
               }
             ]
-          }
+          },
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -1006,6 +1009,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
