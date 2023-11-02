@@ -50,7 +50,22 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "hub"
+      ],
+      "targetBlank": false,
+      "title": "Hub",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
@@ -410,7 +425,7 @@
           "refId": "A"
         }
       ],
-      "title": "Per API",
+      "title": "Per code",
       "type": "piechart"
     },
     {
@@ -965,7 +980,9 @@
   ],
   "refresh": "5s",
   "schemaVersion": 38,
-  "tags": [],
+  "tags": [
+    "hub"
+  ],
   "templating": {
     "list": [
       {
@@ -1011,6 +1028,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }

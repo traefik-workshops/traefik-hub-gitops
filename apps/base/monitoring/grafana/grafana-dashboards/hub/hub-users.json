@@ -18,7 +18,22 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "hub"
+      ],
+      "targetBlank": false,
+      "title": "Hub",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
@@ -609,6 +624,6 @@
   "timezone": "",
   "title": "Users",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038720",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }

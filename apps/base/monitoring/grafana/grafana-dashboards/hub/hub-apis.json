@@ -50,7 +50,22 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [
+        "hub"
+      ],
+      "targetBlank": false,
+      "title": "Hub",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
@@ -709,7 +724,9 @@
   ],
   "refresh": "5s",
   "schemaVersion": 38,
-  "tags": [],
+  "tags": [
+    "hub"
+  ],
   "templating": {
     "list": [
       {
@@ -751,6 +768,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }
