@@ -5,7 +5,7 @@ metadata:
   name: traffic-app
   namespace: traffic
 spec:
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: traffic-app
@@ -23,11 +23,47 @@ spec:
             - name: GW_DOMAIN
               value: gateway.kubecon.demo.traefiklabs.tech
             - name: TOKEN
-              value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa
+              value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa # token: powpow
           imagePullPolicy: Always
           volumeMounts:
           - name: data
             mountPath: /data
+      volumes:
+        - name: data
+          configMap:
+            name: traffic-data
+            defaultMode: 0777
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traffic-app
+  namespace: traffic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traffic-app
+  template:
+    metadata:
+      labels:
+        app: traffic-app
+    spec:
+      containers:
+        - name: traffic
+          image: mmatur/tools:latest
+          args:
+            - /data/traffic.sh
+          env:
+            - name: GW_DOMAIN
+              value: gateway.kubecon.demo.traefiklabs.tech
+            - name: TOKEN
+              value: 0X1lNvJ3dPKf0JjpPRvhlELpOaVa4WlPor1ZRznz # token: juliens-token1
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: data
+              mountPath: /data
       volumes:
         - name: data
           configMap:
