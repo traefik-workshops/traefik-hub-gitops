@@ -421,7 +421,9 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "fixedColor": "red",
+            "mode": "thresholds",
+            "seriesBy": "last"
           },
           "custom": {
             "axisBorderShow": false,
@@ -464,15 +466,15 @@
           ],
           "mappings": [],
           "thresholds": {
-            "mode": "absolute",
+            "mode": "percentage",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 1
               }
             ]
           }
@@ -1009,6 +1011,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }

@@ -74,7 +74,7 @@
               }
             ]
           },
-          "unit": "locale"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -498,7 +498,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
             "axisBorderShow": false,
@@ -537,12 +537,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": 10
               }
             ]
           }
@@ -751,6 +751,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }

@@ -109,7 +109,7 @@
               }
             ]
           },
-          "unit": "locale"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -609,6 +609,6 @@
   "timezone": "",
   "title": "Users",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038720",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
