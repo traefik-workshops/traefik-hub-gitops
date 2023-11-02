@@ -7,8 +7,8 @@ spec:
   title: "Traefik Kubecon"
   description: "API Portal for Kubecon"
   apiGateway: my-gateway
-  # ui:
-  #   logoUrl: https://traefik.io/favicon.png
+  ui:
+    logoUrl: https://camo.githubusercontent.com/7b6d7326498561d3ef4aa9916b82bf927767fc18890f610aa522c018fed8715d/68747470733a2f2f646f632e7472616566696b2e696f2f7472616566696b2d6875622f6173736574732f696d672f7472616566696b2d6875622d6c6f676f2e737667
   # ui:
   #   service:
   #     name: hub-apiportal-ui
