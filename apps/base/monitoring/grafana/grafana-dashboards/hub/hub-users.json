@@ -549,7 +549,9 @@
   ],
   "refresh": "5s",
   "schemaVersion": 38,
-  "tags": [],
+  "tags": [
+    "hub"
+  ],
   "templating": {
     "list": [
       {
@@ -624,6 +626,6 @@
   "timezone": "",
   "title": "Users",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038720",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
