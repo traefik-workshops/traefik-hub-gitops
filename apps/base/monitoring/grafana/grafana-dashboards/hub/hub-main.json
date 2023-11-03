@@ -305,7 +305,7 @@
               },
               {
                 "color": "#EAB839",
-                "value": 2.5
+                "value": 2
               },
               {
                 "color": "red",
@@ -325,9 +325,8 @@
       },
       "id": 6,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -336,7 +335,8 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "10.2.0",
       "targets": [
@@ -358,7 +358,7 @@
         }
       ],
       "title": "Average error rate",
-      "type": "stat"
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -459,7 +459,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -506,8 +506,13 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -545,7 +550,7 @@
           "expr": "sum (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\", code!~\"2.*\"}[1m])) > 0",
           "hide": false,
           "instant": false,
-          "legendFormat": "Non 200 Requests",
+          "legendFormat": "Non 2xx Requests",
           "range": true,
           "refId": "B"
         }
@@ -581,7 +586,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -614,12 +619,13 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "percent"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 12,
         "w": 8,
         "x": 0,
         "y": 8
@@ -628,8 +634,13 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -687,7 +698,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -720,12 +731,13 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 12,
         "w": 8,
         "x": 8,
         "y": 8
@@ -734,10 +746,17 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
         },
         "tooltip": {
           "mode": "single",
@@ -793,7 +812,7 @@
             "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -826,12 +845,13 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 12,
         "w": 8,
         "x": 16,
         "y": 8
@@ -840,8 +860,13 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -922,6 +947,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }

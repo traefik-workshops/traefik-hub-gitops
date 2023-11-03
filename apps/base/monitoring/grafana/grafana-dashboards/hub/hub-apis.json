@@ -18,7 +18,7 @@
           "type": "grafana-github-datasource",
           "uid": "e0ec683e-4eb7-43cf-bc1e-b7faca0547d7"
         },
-        "enable": true,
+        "enable": false,
         "iconColor": "red",
         "mappings": {
           "text": {
@@ -450,11 +450,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 2
+                "value": 2.0001
               },
               {
                 "color": "dark-red",
-                "value": 3
+                "value": 5
               }
             ]
           },
@@ -464,15 +464,14 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 2,
+        "w": 3,
         "x": 14,
         "y": 0
       },
       "id": 6,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -481,7 +480,8 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "10.2.0",
       "targets": [
@@ -503,7 +503,7 @@
         }
       ],
       "title": "Average error rate",
-      "type": "stat"
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -560,13 +560,14 @@
                 "value": 10
               }
             ]
-          }
+          },
+          "unit": "reqps"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 8,
+        "h": 12,
+        "w": 12,
         "x": 0,
         "y": 8
       },
@@ -574,8 +575,13 @@
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -610,7 +616,7 @@
           "expr": "sum(rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))",
           "hide": false,
           "instant": false,
-          "legendFormat": "Non 200 Requests",
+          "legendFormat": "Non 2xx Requests",
           "range": true,
           "refId": "B"
         }
@@ -673,22 +679,28 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 8,
+        "h": 12,
+        "w": 12,
+        "x": 12,
         "y": 8
       },
       "id": 10,
       "interval": "10s",
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "min",
+            "max",
+            "mean",
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -718,7 +730,7 @@
           "useBackend": false
         }
       ],
-      "title": "Latency per API in ms",
+      "title": "Latency per API",
       "type": "timeseries"
     }
   ],
@@ -732,7 +744,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "customer-api",
           "value": "customer-api"
         },
@@ -768,6 +780,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 7,
+  "version": 8,
   "weekStart": ""
 }
