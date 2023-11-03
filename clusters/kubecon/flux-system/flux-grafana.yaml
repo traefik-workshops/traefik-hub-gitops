@@ -1,0 +1,33 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Alert
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  providerRef:
+    name: grafana
+  eventSeverity: info
+  eventSources:
+    - kind: GitRepository
+      name: '*'
+      namespace: flux-system
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Provider
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  type: grafana
+  address: "http://grafana.monitoring.svc.cluster.local:3000/api/annotations"
+  secretRef:
+    name: grafana-auth
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-auth
+  namespace: monitoring
+stringData:
+  token: "glsa_YK4Rb7jZn3B1NDRh9sUa9n8oox36c5lq_0f2d737f"

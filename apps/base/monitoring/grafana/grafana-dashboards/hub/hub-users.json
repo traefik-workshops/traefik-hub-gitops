@@ -37,6 +37,16 @@
   "liveNow": false,
   "panels": [
     {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "prometheus"
@@ -64,10 +74,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 3,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 2,
       "options": {
@@ -129,10 +139,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 3,
-        "x": 3,
-        "y": 0
+        "x": 5,
+        "y": 1
       },
       "id": 4,
       "options": {
@@ -202,10 +212,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 3,
-        "x": 6,
-        "y": 0
+        "x": 10,
+        "y": 1
       },
       "id": 5,
       "options": {
@@ -273,16 +283,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 3,
-        "x": 9,
-        "y": 0
+        "x": 15,
+        "y": 1
       },
       "id": 6,
       "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
+        "minVizHeight": 75,
+        "minVizWidth": 75,
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -291,10 +300,8 @@
           "fields": "",
           "values": false
         },
-        "text": {
-          "titleSize": 1
-        },
-        "textMode": "auto"
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
       "pluginVersion": "10.2.0",
       "targets": [
@@ -316,7 +323,19 @@
         }
       ],
       "title": "Average error rate",
-      "type": "stat"
+      "type": "gauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 9,
+      "panels": [],
+      "type": "row"
     },
     {
       "datasource": {
@@ -329,36 +348,75 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
             }
           },
-          "mappings": []
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 12,
-        "y": 0
+        "h": 14,
+        "w": 20,
+        "x": 0,
+        "y": 6
       },
-      "id": 7,
+      "id": 1,
+      "interval": "10s",
       "options": {
         "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "pieType": "pie",
-        "reduceOptions": {
           "calcs": [
+            "min",
+            "max",
+            "mean",
             "lastNotNull"
           ],
-          "fields": "",
-          "values": false
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Name",
+          "sortDesc": false
         },
         "tooltip": {
           "mode": "single",
@@ -371,16 +429,20 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
+          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{email=~\"$email\", token_name=~\"$token_name\",code=~\".+\"}[1m])) > 0",
+          "expr": "sum by (code, api_name, method, token_name) (rate(traefik_hub_api_requests_total{email=~\"$email\", token_name=~\"$token_name\",code=~\".+\"}[1m])) > 0",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "[{{code}}] {{api_name}} {{method}} {{token_name}}",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
-      "title": "Per API",
-      "type": "piechart"
+      "title": "API requests per token and code",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -404,13 +466,16 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 3,
-        "x": 15,
-        "y": 0
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 6
       },
       "id": 8,
       "options": {
+        "displayLabels": [
+          "percent"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
@@ -457,68 +522,40 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
             }
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
+          "mappings": []
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 14,
-        "w": 22,
-        "x": 0,
-        "y": 8
+        "h": 8,
+        "w": 4,
+        "x": 20,
+        "y": 12
       },
-      "id": 1,
-      "interval": "10s",
+      "id": 7,
       "options": {
+        "displayLabels": [
+          "percent"
+        ],
         "legend": {
-          "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
         },
         "tooltip": {
           "mode": "single",
@@ -531,20 +568,16 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by (code, api_name, method, token_name) (rate(traefik_hub_api_requests_total{email=~\"$email\", token_name=~\"$token_name\",code=~\".+\"}[1m])) > 0",
-          "fullMetaSearch": false,
-          "includeNullMetadata": true,
+          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{email=~\"$email\", token_name=~\"$token_name\",code=~\".+\"}[1m])) > 0",
           "instant": false,
-          "legendFormat": "[{{code}}] {{api_name}} {{method}} {{token_name}}",
+          "legendFormat": "__auto",
           "range": true,
-          "refId": "A",
-          "useBackend": false
+          "refId": "A"
         }
       ],
-      "title": "Panel Title",
-      "type": "timeseries"
+      "title": "Per API",
+      "type": "piechart"
     }
   ],
   "refresh": "5s",
@@ -557,7 +590,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "julien.salleyron@traefik.io",
           "value": "julien.salleyron@traefik.io"
         },
@@ -626,6 +659,6 @@
   "timezone": "",
   "title": "Users",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038720",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
