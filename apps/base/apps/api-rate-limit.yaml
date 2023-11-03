@@ -4,8 +4,8 @@ kind: APIRateLimit
 metadata:
   name: crm-user-ratelimit
 spec:
-  limit: 2 # 2 requests
-  period: 5s # 5 seconds
+  limit: 3 # 2 requests
+  period: 50s # 5 seconds
   groups:
     - crm-user
   apiSelector:
