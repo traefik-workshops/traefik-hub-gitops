@@ -8,9 +8,17 @@
           "uid": "-- Grafana --"
         },
         "enable": true,
-        "hide": true,
+        "hide": false,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": true,
+          "tags": [
+            "flux"
+          ],
+          "type": "tags"
+        },
         "type": "dashboard"
       },
       {
@@ -947,6 +955,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }

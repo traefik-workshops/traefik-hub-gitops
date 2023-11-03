@@ -8,9 +8,17 @@
           "uid": "-- Grafana --"
         },
         "enable": true,
-        "hide": true,
+        "hide": false,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": true,
+          "tags": [
+            "flux"
+          ],
+          "type": "tags"
+        },
         "type": "dashboard"
       },
       {
@@ -744,7 +752,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "customer-api",
           "value": "customer-api"
         },
@@ -780,6 +788,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
