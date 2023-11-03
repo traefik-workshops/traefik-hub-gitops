@@ -13,7 +13,7 @@ spec:
       name: 'kubecon-apps'
       namespace: flux-system
   inclusionList:
-    - "Reconciliation finished .*"
+    - ".*finished.*"
   summary: "reconciliation finished"
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
