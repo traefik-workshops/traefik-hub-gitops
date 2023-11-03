@@ -9,8 +9,8 @@ spec:
     name: grafana
   eventSeverity: info
   eventSources:
-    - kind: GitRepository
-      name: '*'
+    - kind: Kustomization
+      name: 'kubecon-apps'
       namespace: flux-system
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
