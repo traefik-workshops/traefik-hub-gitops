@@ -12,9 +12,6 @@ spec:
     - kind: Kustomization
       name: 'kubecon-apps'
       namespace: flux-system
-  inclusionList:
-    - ".*finished.*"
-  summary: "reconciliation finished"
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta2
 kind: Provider
