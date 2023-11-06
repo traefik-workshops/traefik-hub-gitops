@@ -16,5 +16,5 @@ spec:
 #        number: 80
   customDomains:
     - portal.kubecon.demo.traefiklabs.tech
-#    - grafana.kubecon.demo.traefiklabs.tech
-#    - prometheus.kubecon.demo.traefiklabs.tech
+    - grafana.kubecon.demo.traefiklabs.tech
+    - prometheus.kubecon.demo.traefiklabs.tech
