@@ -24,7 +24,7 @@
       {
         "datasource": {
           "type": "grafana-github-datasource",
-          "uid": "e0ec683e-4eb7-43cf-bc1e-b7faca0547d7"
+          "uid": "f5f7c766-0234-4f64-b5ac-7ca6c341f3ce"
         },
         "enable": true,
         "iconColor": "red",
@@ -955,6 +955,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 9,
+  "version": 1,
   "weekStart": ""
 }

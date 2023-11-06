@@ -24,7 +24,7 @@
       {
         "datasource": {
           "type": "grafana-github-datasource",
-          "uid": "e0ec683e-4eb7-43cf-bc1e-b7faca0547d7"
+          "uid": "f5f7c766-0234-4f64-b5ac-7ca6c341f3ce"
         },
         "enable": false,
         "iconColor": "red",
@@ -788,6 +788,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 9,
+  "version": 10,
   "weekStart": ""
 }
