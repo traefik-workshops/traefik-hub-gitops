@@ -3,4 +3,4 @@ kind: Secret
 metadata:
   name: hub-agent-token
 data:
-  token: YmM4ODc5OTAtMTllNy00MGU2LWI3MTctNWQ5YTg2ZTEzNDI4
+  token: MDYyOGNkZjgtY2Y4Yy00YzZiLWFkYTUtODBiYzg1MzcxYTEw
