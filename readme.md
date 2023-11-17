@@ -77,7 +77,7 @@ kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 
 # Deploy the stack on this cluster
 
-Login to the Traefik Hub UI, add a new agent and copy your token.
+Login to the [Traefik Hub UI](https://hub.traefik.io), add a [new agent](https://hub.traefik.io/agents/new) and copy your token.
 
 Now, open a terminal and run these commands to create secret needed for Traefik Hub
 
@@ -104,3 +104,13 @@ kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```bash
 kubectl apply -k apps/overlays/local
 ```
+
+# Clean up
+
+Everything is installed in kind, so it can be done by deleting the kind cluster:
+
+```shell
+kind delete cluster
+```
+
+You may also want to delete agent in Traefik Hub UI.
