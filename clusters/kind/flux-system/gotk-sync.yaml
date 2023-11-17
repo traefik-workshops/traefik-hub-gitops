@@ -21,6 +21,7 @@ metadata:
 spec:
   interval: 10m0s
   path: ./clusters/kind/flux-system
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -34,6 +35,7 @@ metadata:
 spec:
   interval: 10s
   path: ./apps/base/apps
+  force: true
   prune: true
   dependsOn:
     - name: cluster
@@ -50,9 +52,8 @@ metadata:
 spec:
   interval: 10s
   path: ./apps/base/monitoring
+  force: true
   prune: true
-  dependsOn:
-    - name: traefik-hub
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -65,7 +66,11 @@ metadata:
 spec:
   interval: 10s
   path: ./apps/base/traefik-hub
+  force: true
   prune: true
+  wait: true
+  dependsOn:
+    - name: monitoring
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -78,6 +83,7 @@ metadata:
 spec:
   interval: 10s
   path: ./apps/base/traffic
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
@@ -91,6 +97,7 @@ metadata:
 spec:
   interval: 30s
   path: ./apps/base/apiportal-ui
+  force: true
   prune: true
   sourceRef:
     kind: GitRepository
