@@ -54,6 +54,8 @@ spec:
   path: ./apps/base/monitoring
   force: true
   prune: true
+  dependsOn:
+    - name: traefik-hub
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -69,8 +71,6 @@ spec:
   force: true
   prune: true
   wait: true
-  dependsOn:
-    - name: monitoring
   sourceRef:
     kind: GitRepository
     name: flux-system
