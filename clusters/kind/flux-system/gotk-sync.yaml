@@ -58,66 +58,66 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: traefik-hub
-  namespace: flux-system
-spec:
-  interval: 10s
-  path: ./apps/base/traefik-hub
-  force: true
-  prune: true
-  wait: true
-  dependsOn:
-    - name: monitoring
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: traffic
-  namespace: flux-system
-spec:
-  interval: 10s
-  path: ./apps/base/traffic
-  force: true
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: apiportal-ui
-  namespace: flux-system
-spec:
-  interval: 30s
-  path: ./apps/base/apiportal-ui
-  force: true
-  prune: true
-  dependsOn:
-    - name: traefik-hub
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: apps
-  namespace: flux-system
-spec:
-  interval: 10s
-  path: ./apps/base/apps
-  force: true
-  prune: true
-  dependsOn:
-    - name: traefik-hub
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
+      #---
+      #apiVersion: kustomize.toolkit.fluxcd.io/v1
+      #kind: Kustomization
+      #metadata:
+      #name: traefik-hub
+      #namespace: flux-system
+      #spec:
+      #interval: 10s
+      #path: ./apps/base/traefik-hub
+      #force: true
+      #prune: true
+      #wait: true
+      #dependsOn:
+      #- name: monitoring
+      #sourceRef:
+      #kind: GitRepository
+      #name: flux-system
+      #---
+      #apiVersion: kustomize.toolkit.fluxcd.io/v1
+      #kind: Kustomization
+      #metadata:
+      #name: traffic
+      #namespace: flux-system
+      #spec:
+      #interval: 10s
+      #path: ./apps/base/traffic
+      #force: true
+      #prune: true
+      #sourceRef:
+      #kind: GitRepository
+      #name: flux-system
+      #---
+      #apiVersion: kustomize.toolkit.fluxcd.io/v1
+      #kind: Kustomization
+      #metadata:
+      #name: apiportal-ui
+      #namespace: flux-system
+      #spec:
+      #interval: 30s
+      #path: ./apps/base/apiportal-ui
+      #force: true
+      #prune: true
+      #dependsOn:
+      #- name: traefik-hub
+      #sourceRef:
+      #kind: GitRepository
+      #name: flux-system
+      #---
+      #apiVersion: kustomize.toolkit.fluxcd.io/v1
+      #kind: Kustomization
+      #metadata:
+      #name: apps
+      #namespace: flux-system
+      #spec:
+      #interval: 10s
+      #path: ./apps/base/apps
+      #force: true
+      #prune: true
+      #dependsOn:
+      #- name: traefik-hub
+      #sourceRef:
+      #kind: GitRepository
+      #name: flux-system
