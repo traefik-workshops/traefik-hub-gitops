@@ -69,6 +69,14 @@ kubectl cluster-info
 kubectl wait --for=condition=ready nodes kind-control-plane
 ```
 
+You will also need a LB on this Kubernetes cluster:
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.11/config/manifests/metallb-native.yaml
+kubectl wait --namespace metallb-system --for=condition=ready pod --selector=app=metallb --timeout=90s
+kubectl apply -f clusters/kind/metallb-config.yaml
+```
+
 # Fork the repo and deploy Flux CD
 
 Flux needs to be able to commit on the repository, so this tutorial can only works on a fork that _you_ owns.
