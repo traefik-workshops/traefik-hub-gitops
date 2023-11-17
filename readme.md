@@ -59,6 +59,11 @@ All config files are in this public GitHub repository, so you may be interested 
 ```shell
 git clone https://github.com/traefik-workshops/traefik-hub-gitops.git
 cd traefik-hub-gitops
+```
+
+And create the _kind_ Kubernetes cluster:
+
+```shell
 kind create cluster --config=kind.config
 kubectl cluster-info
 kubectl wait --for=condition=ready nodes kind-control-plane
