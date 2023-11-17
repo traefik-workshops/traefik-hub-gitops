@@ -6,10 +6,10 @@ metadata:
   namespace: monitoring
 spec:
   entryPoints:
-    - websecure
+    - web
   routes:
     - kind: Rule
-      match: Host(`prometheus.kubecon.demo.traefiklabs.tech`)
+      match: Host(`prometheus.docker.localhost`)
       services:
         - name: prometheus
           port: 9090

@@ -2,7 +2,7 @@
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIGateway
 metadata:
-  name: my-gateway
+  name: api-gateway
   labels:
     area: crm
 spec:
@@ -11,5 +11,4 @@ spec:
     - crm-internal
     - admins
     - custom-pick
-  customDomains:
-    - gateway.kubecon.demo.traefiklabs.tech
+  customDomains: []
