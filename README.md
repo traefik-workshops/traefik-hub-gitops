@@ -2,15 +2,14 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://hub.traefik.io/">
-  <img src="https://doc.traefik.io/traefik-hub/assets/images/logos-traefik-hub-horizontal.svg"   style="width:250px;" align="center" />
+  <img src="https://doc.traefik.io/traefik-hub/assets/images/logos-traefik-hub-horizontal.svg" "width=200px" align="center" />
 </a>
 <br />
 <br />
 
 <div align="center">
     <a href="https://hub.traefik.io">Log In</a> |
-    <a href="https://doc.traefik.io/traefik-hub/">Documentation</a> |
-    <a href="https://community.traefik.io/c/traefik-hub/20">Community</a>
+    <a href="https://doc.traefik.io/traefik-hub/">Documentation</a>
 </div>
 </div>
 
@@ -22,7 +21,7 @@
 <br />
 </div>
 
-<div align="center">Welcome to this tutorial !</div>
+<div align="center">Welcome to this tutorial!</div>
 
 # Summary
 
@@ -40,7 +39,7 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 kind requires some config in order to use an IngressController on localhost:
 
 ```yaml
-$ cat kind.config
+cat kind.config
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
@@ -79,14 +78,13 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 
 # Fork the repo and deploy Flux CD
 
-Flux needs to be able to commit on the repository, so this tutorial can only works on a fork that _you_ owns.
+Flux needs to be able to commit on the repository, so this tutorial can only work on a fork that *you* own
 You will also need a GitHub personal access token (PAT) with administration permissions.
 
 ```shell
 gh repo fork --remote
 kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 ```
-
 
 # Deploy the stack on this cluster
 
