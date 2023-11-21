@@ -14,4 +14,3 @@ spec:
         - name: prometheus
           port: 9090
           namespace: monitoring
-  tls: {}
