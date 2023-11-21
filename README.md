@@ -2,15 +2,14 @@
 
 <div align="center" style="margin: 30px;">
 <a href="https://hub.traefik.io/">
-  <img src="https://doc.traefik.io/traefik-hub/assets/images/logos-traefik-hub-horizontal.svg"   style="width:250px;" align="center" />
+  <img src="https://doc.traefik.io/traefik-hub/assets/images/logos-traefik-hub-horizontal.svg" style="width:250px;" align="center" />
 </a>
 <br />
 <br />
 
 <div align="center">
     <a href="https://hub.traefik.io">Log In</a> |
-    <a href="https://doc.traefik.io/traefik-hub/">Documentation</a> |
-    <a href="https://community.traefik.io/c/traefik-hub/20">Community</a>
+    <a href="https://doc.traefik.io/traefik-hub/">Documentation</a>
 </div>
 </div>
 
@@ -22,7 +21,7 @@
 <br />
 </div>
 
-<div align="center">Welcome to this tutorial !</div>
+<div align="center">Welcome to this tutorial!</div>
 
 # Summary
 
@@ -37,10 +36,13 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 3. [Flux CD](https://fluxcd.io/flux/cmd/) command-line tool installed.
 4. A Kubernetes cluster running. In this tutorial, we'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
 
-kind requires some config in order to use an IngressController on localhost:
+kind requires some configuration to use an IngressController on localhost, see the following example:
+
+```shell
+cat kind.config
+```
 
 ```yaml
-$ cat kind.config
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
@@ -61,7 +63,7 @@ git clone https://github.com/traefik-workshops/traefik-hub-gitops.git
 cd traefik-hub-gitops
 ```
 
-And create the _kind_ Kubernetes cluster:
+And create the kind Kubernetes cluster:
 
 ```shell
 kind create cluster --config=kind.config
@@ -69,7 +71,7 @@ kubectl cluster-info
 kubectl wait --for=condition=ready nodes kind-control-plane
 ```
 
-You will also need a LB on this Kubernetes cluster:
+You will also need a load balancer (LB) on this Kubernetes cluster:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.11/config/manifests/metallb-native.yaml
@@ -79,14 +81,13 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 
 # Fork the repo and deploy Flux CD
 
-Flux needs to be able to commit on the repository, so this tutorial can only works on a fork that _you_ owns.
+Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.  
 You will also need a GitHub personal access token (PAT) with administration permissions.
 
 ```shell
 gh repo fork --remote
 kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 ```
-
 
 # Deploy the stack on this cluster
 
@@ -100,7 +101,7 @@ kubectl create namespace traefik-hub
 kubectl create secret generic hub-agent-token --namespace traefik-hub --from-literal=token=${TRAEFIK_HUB_TOKEN}
 ```
 
-Then, we can configure flux and launch it on the fork.
+Then, you can configure flux and launch it on the fork.
 
 ```shell
 export GITHUB_ACCOUNT=xxx
@@ -114,7 +115,7 @@ sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/go
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```
 
-```bash
+```shell
 kubectl apply -k apps/overlays/local
 ```
 
