@@ -81,7 +81,7 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 
 # Fork the repo and deploy Flux CD
 
-Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.  
+Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.
 You will also need a GitHub personal access token (PAT) with administration permissions.
 
 ```shell
@@ -115,9 +115,23 @@ sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/go
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```
 
+One can track Flux works with CLI:
+
 ```shell
-kubectl apply -k apps/overlays/local
+flux get ks
 ```
+
+You'll need to wait a few **minutes** before everything is ready.
+
+![Kustomizations are ready](./images/kustomizations-ready.png)
+
+# Use the stack
+
+When all _kustomization_ are **ready**, one can open http://grafana.docker.localhost
+
+Default credentials are login: admin and password: admin.
+
+
 
 # Clean up
 
