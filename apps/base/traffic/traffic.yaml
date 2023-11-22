@@ -34,8 +34,10 @@ spec:
                   key: admin
           imagePullPolicy: Always
           volumeMounts:
-          - name: script
-            mountPath: /usr/local/bin
+            - name: script
+              mountPath: /usr/local/bin
+            - mountPath: /var/shared
+              name: shared
       volumes:
         - name: script
           configMap:
@@ -80,8 +82,10 @@ spec:
                   key: support
           imagePullPolicy: Always
           volumeMounts:
-          - name: script
-            mountPath: /usr/local/bin
+            - name: script
+              mountPath: /usr/local/bin
+            - mountPath: /var/shared
+              name: shared
       volumes:
         - name: script
           configMap:
