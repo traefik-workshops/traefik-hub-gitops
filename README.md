@@ -101,15 +101,6 @@ kubectl create namespace traefik-hub
 kubectl create secret generic hub-agent-token --namespace traefik-hub --from-literal=token=${TRAEFIK_HUB_TOKEN}
 ```
 
-In order to generate traffic, you can create user `admin`
-
-![Create user admin](./images/create-user-admin.png)
-
-And a user `support`
-
-![Create user support](./images/create-user-support.png)
-
-
 # Deploy the stack on this cluster
 
 Then, you can configure flux and launch it on the fork.
@@ -138,7 +129,37 @@ You'll need to wait a few **minutes** before everything is ready.
 
 # Configure traffic generation
 
-When all _kustomization_ are **ready**, one can open https://api-portal.docker.localhost
+In order to generate traffic, you can create user `admin`
+
+![Create user admin](./images/create-user-admin.png)
+
+And a user `support`
+
+![Create user support](./images/create-user-support.png)
+
+When all _kustomization_ are **ready**, one can open API Portal, following URL available in the UI or in the CRD:
+
+```shell
+kubectl get apiportal
+```
+
+On the API Portal, you can login:
+
+![API Portal Login](./images/api-portal-login.png)
+
+And after create API Tokens:
+
+![Create API Token](./images/create-api-token.png)
+
+For both users.
+
+With tokens, you can create a secret with it, in order to enable traffic app to generate load:
+
+```shell
+export ADMIN_TOKEN="xxx"
+export SUPPORT_TOKEN="yyy"
+kubectl create secret generic tokens -n traffic --from-literal=admin="${ADMIN_TOKEN}" --from-literal=support="${SUPPORT_TOKEN}"
+```
 
 # Use observability stack
 
