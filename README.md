@@ -131,7 +131,9 @@ When all _kustomization_ are **ready**, one can open http://grafana.docker.local
 
 Default credentials are login: admin and password: admin.
 
+By clicking on the left menu, you are able to access to all dashboards:
 
+![Grafana Dashboards](./images/grafana-dashboards.png)
 
 # Clean up
 
