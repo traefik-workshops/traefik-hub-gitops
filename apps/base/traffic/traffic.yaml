@@ -8,31 +8,41 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: traffic-app
+      app: traffic-app-admin
   template:
     metadata:
       labels:
-        app: traffic-app
+        app: traffic-app-admin
     spec:
+      initContainers:
+        - name: get-gw-url
+          image: bitnami/kubectl:1.27
+          commands: [ "sh", "-c", "kubectl get apigateways.hub.traefik.io api-gateway -o template --template '{{ .status.hubDomain }}' > /var/shared/apigw" ]
+          volumeMounts:
+            - mountPath: /var/shared
+              name: shared
       containers:
         - name: traffic
           image: mmatur/tools:latest
           args:
-            - /data/traffic.sh
+            - /usr/local/bin/traffic.sh
           env:
-            - name: GW_DOMAIN
-              value: api.docker.localhost
             - name: TOKEN
-              value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa # token: powpow
+              valueFrom:
+                secretKeyRef:
+                  name: tokens
+                  key: admin
           imagePullPolicy: Always
           volumeMounts:
-          - name: data
-            mountPath: /data
+          - name: script
+            mountPath: /usr/local/bin
       volumes:
-        - name: data
+        - name: script
           configMap:
-            name: traffic-data
+            name: script
             defaultMode: 0777
+        - name: shared
+          emptyDir: {}
 
 ---
 apiVersion: apps/v1
@@ -44,28 +54,38 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: traffic-app
+      app: traffic-app-support
   template:
     metadata:
       labels:
-        app: traffic-app
+        app: traffic-app-support
     spec:
+      initContainers:
+        - name: get-gw-url
+          image: bitnami/kubectl:1.27
+          commands: [ "sh", "-c", "kubectl get apigateways.hub.traefik.io api-gateway -o template --template '{{ .status.hubDomain }}' > /var/shared/apigw" ]
+          volumeMounts:
+            - mountPath: /var/shared
+              name: shared
       containers:
         - name: traffic
           image: mmatur/tools:latest
           args:
-            - /data/traffic.sh
+            - /usr/local/bin/traffic.sh
           env:
-            - name: GW_DOMAIN
-              value: api.docker.localhost
             - name: TOKEN
-              value: 0X1lNvJ3dPKf0JjpPRvhlELpOaVa4WlPor1ZRznz # token: juliens-token1
+              valueFrom:
+                secretKeyRef:
+                  name: tokens
+                  key: support
           imagePullPolicy: Always
           volumeMounts:
-            - name: data
-              mountPath: /data
+          - name: script
+            mountPath: /usr/local/bin
       volumes:
-        - name: data
+        - name: script
           configMap:
-            name: traffic-data
+            name: script
             defaultMode: 0777
+        - name: shared
+          emptyDir: {}

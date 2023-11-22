@@ -9,5 +9,5 @@ configMapGenerator:
   - behavior: create
     files:
       - traffic.sh=./scripts/traffic.sh
-    name: traffic-data
+    name: script
     namespace: traffic

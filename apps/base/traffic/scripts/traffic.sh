@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-GW_DOMAIN="api.docker.localhost"
+GW_DOMAIN=$(cat /var/shared/apigw)
 
 random() {
 	NUMBER=$RANDOM
