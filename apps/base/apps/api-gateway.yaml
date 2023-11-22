@@ -11,4 +11,5 @@ spec:
     - crm-internal
     - admins
     - custom-pick
-  customDomains: []
+  customDomains:
+    - "api.docker.localhost"

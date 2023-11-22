@@ -89,7 +89,7 @@ gh repo fork --remote
 kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 ```
 
-# Deploy the stack on this cluster
+# Configure Traefik Hub
 
 Login to the [Traefik Hub UI](https://hub.traefik.io), add a [new agent](https://hub.traefik.io/agents/new) and copy your token.
 
@@ -100,6 +100,17 @@ export TRAEFIK_HUB_TOKEN=xxx
 kubectl create namespace traefik-hub
 kubectl create secret generic hub-agent-token --namespace traefik-hub --from-literal=token=${TRAEFIK_HUB_TOKEN}
 ```
+
+In order to generate traffic, you can create user `admin`
+
+![Create user admin](./images/create-user-admin.png)
+
+And a user `support`
+
+![Create user support](./images/create-user-support.png)
+
+
+# Deploy the stack on this cluster
 
 Then, you can configure flux and launch it on the fork.
 
@@ -125,9 +136,15 @@ You'll need to wait a few **minutes** before everything is ready.
 
 ![Kustomizations are ready](./images/kustomizations-ready.png)
 
-# Use the stack
+# Configure traffic generation
 
-When all _kustomization_ are **ready**, one can open http://grafana.docker.localhost
+When all _kustomization_ are **ready**, one can open https://api-portal.docker.localhost
+
+# Use observability stack
+
+Grafana is accessible on http://grafana.docker.localhost
+
+Prometheus is on http://prometheus.docker.localhost
 
 Default credentials are login: admin and password: admin.
 

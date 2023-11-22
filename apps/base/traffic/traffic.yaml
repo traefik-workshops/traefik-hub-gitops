@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traffic-app-michael
+  name: traffic-app-admin
   namespace: traffic
 spec:
   replicas: 1
@@ -21,7 +21,7 @@ spec:
             - /data/traffic.sh
           env:
             - name: GW_DOMAIN
-              value: gateway.kubecon.demo.traefiklabs.tech
+              value: api.docker.localhost
             - name: TOKEN
               value: KINicbQ9InB9xM9DtK5tZuITzq6hsIPCrQnIU5aa # token: powpow
           imagePullPolicy: Always
@@ -38,7 +38,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: traffic-app-julien
+  name: traffic-app-support
   namespace: traffic
 spec:
   replicas: 1
@@ -57,7 +57,7 @@ spec:
             - /data/traffic.sh
           env:
             - name: GW_DOMAIN
-              value: gateway.kubecon.demo.traefiklabs.tech
+              value: api.docker.localhost
             - name: TOKEN
               value: 0X1lNvJ3dPKf0JjpPRvhlELpOaVa4WlPor1ZRznz # token: juliens-token1
           imagePullPolicy: Always
