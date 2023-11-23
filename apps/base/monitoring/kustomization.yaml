@@ -5,5 +5,5 @@ resources:
   - namespace.yaml
   - prometheus
   - grafana
-  - metrics-server
+  - loki
   - flux-grafana.yaml
