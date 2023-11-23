@@ -20,38 +20,6 @@
           "type": "tags"
         },
         "type": "dashboard"
-      },
-      {
-        "datasource": {
-          "type": "grafana-github-datasource",
-          "uid": "f5f7c766-0234-4f64-b5ac-7ca6c341f3ce"
-        },
-        "enable": false,
-        "iconColor": "red",
-        "mappings": {
-          "text": {
-            "source": "field",
-            "value": "url"
-          },
-          "title": {
-            "source": "field",
-            "value": "title"
-          }
-        },
-        "name": "Pull Requests Merged",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "options": {
-            "query": "",
-            "timeField": 2
-          },
-          "owner": "traefik",
-          "queryType": "Pull_Requests",
-          "repository": "hub-kubecon-demo",
-          "tags": [],
-          "type": "dashboard"
-        }
       }
     ]
   },
