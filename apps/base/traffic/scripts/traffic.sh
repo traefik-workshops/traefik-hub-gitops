@@ -30,6 +30,8 @@ call() {
 for (( ; ; ))
 do
  call 'GET' "/customers/customers" 1000 2
+ call 'GET' "/customers-versioned/v2/customers" 1000 2
+ call 'GET' "/customers-versioned/customers?v=3" 1000 2
  call 'GET' "/flights/flights" 1000 5
  call 'GET' "/tickets/tickets" 1000 2
  call 'POST' "/tickets/tickets" 1000 2
