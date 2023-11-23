@@ -26,6 +26,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 4,
   "links": [
     {
       "asDropdown": false,
@@ -99,7 +100,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[$__range]))",
+          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[$__range]))",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -176,7 +177,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m])) > 0",
+          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -247,7 +248,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (api_name) (increase(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[$__range])) > 0",
+          "expr": "sum by (api_name) (increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[$__range])) > 0",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -289,7 +290,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -323,7 +324,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "100*sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.+\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code=~\".+\"}[$__range]))",
+          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\", code!~\"(2.+|401)\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\", code=~\".+\"}[$__range]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -506,7 +507,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\"}[1m])) > 0",
+          "expr": "sum (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
           "format": "time_series",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -523,7 +524,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\", code!~\"2.*\"}[1m])) > 0",
+          "expr": "sum (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\", code!~\"(2.*|401)\"}[1m])) > 0",
           "hide": false,
           "instant": false,
           "legendFormat": "Non 2xx Requests",
@@ -596,7 +597,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -606,7 +607,7 @@
         "x": 0,
         "y": 8
       },
-      "id": 12,
+      "id": 13,
       "interval": "10s",
       "options": {
         "legend": {
@@ -633,17 +634,17 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "100*sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"2.*\"}[1m]))/sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m]))",
+          "expr": "sum by (api_name, api_version_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{api_name}}",
+          "legendFormat": "{{api_name}} {{api_version_name}}",
           "range": true,
           "refId": "A",
           "useBackend": false
         }
       ],
-      "title": "Error rate per API",
+      "title": "Requests per API",
       "type": "timeseries"
     },
     {
@@ -651,6 +652,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -747,11 +749,11 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "avg by (api_name) (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\"}[1m])) > 0",
+          "expr": "avg by (api_name, api_version_name) (rate(traefik_hub_api_requests_duration_milliseconds_sum{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{api_name}}",
+          "legendFormat": "{{api_name}} {{api_version_name}}",
           "range": true,
           "refId": "A",
           "useBackend": false
@@ -822,7 +824,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -832,7 +834,7 @@
         "x": 16,
         "y": 8
       },
-      "id": 13,
+      "id": 12,
       "interval": "10s",
       "options": {
         "legend": {
@@ -859,17 +861,17 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\"}[1m])) > 0",
+          "expr": "sum by (api_name, api_version_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\", code!~\"(2.*|401)\"}[1m]))/sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
-          "legendFormat": "{{api_name}}",
+          "legendFormat": "{{api_name}} {{api_version_name}}",
           "range": true,
           "refId": "A",
           "useBackend": false
         }
       ],
-      "title": "Requests per API",
+      "title": "Error rate per API",
       "type": "timeseries"
     }
   ],
@@ -884,12 +886,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -899,12 +897,40 @@
         "hide": 0,
         "includeAll": true,
         "label": "API Name",
-        "multi": true,
+        "multi": false,
         "name": "api_name",
         "options": [],
         "query": {
           "qryType": 1,
           "query": "label_values(api_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values({api_name=\"$api_name\"}, api_version_name)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "API Version",
+        "multi": true,
+        "name": "api_version_name",
+        "options": [],
+        "query": {
+          "qryType": 5,
+          "query": "label_values({api_name=\"$api_name\"}, api_version_name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -923,6 +949,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 1,
+  "version": 6,
   "weekStart": ""
 }
