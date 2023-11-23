@@ -5,4 +5,5 @@ resources:
   - namespace.yaml
   - prometheus
   - grafana
+  - metrics-server
   - flux-grafana.yaml
