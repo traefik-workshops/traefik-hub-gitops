@@ -15,7 +15,7 @@ spec:
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIVersion
 metadata:
-  name: customer-api-v1
+  name: v1
   namespace: apps
 spec:
   apiName: customer-api-versioned
@@ -34,7 +34,7 @@ spec:
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIVersion
 metadata:
-  name: customer-api-v2
+  name: v2
   namespace: apps
 spec:
   apiName: customer-api-versioned
@@ -56,7 +56,7 @@ spec:
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIVersion
 metadata:
-  name: customer-api-v3
+  name: v3
   namespace: apps
 spec:
   apiName: customer-api-versioned
@@ -78,7 +78,7 @@ spec:
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIVersion
 metadata:
-  name: customer-api-v4
+  name: v4
   namespace: apps
 spec:
   apiName: customer-api-versioned
@@ -105,7 +105,7 @@ spec:
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIVersion
 metadata:
-  name: customer-api-v2-1-0
+  name: v2-1-0
   namespace: apps
 spec:
   apiName: customer-api-versioned
