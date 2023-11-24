@@ -35,6 +35,7 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 2. [gh](https://cli.github.com/) command-line tool installed and configured with your account
 3. [Flux CD](https://fluxcd.io/flux/cmd/) command-line tool installed.
 4. A Kubernetes cluster running.  
+
 In this tutorial, you'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
 
 kind requires some configuration to use an IngressController on localhost, see the following example:
