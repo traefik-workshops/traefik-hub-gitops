@@ -103,15 +103,19 @@ kubectl create secret generic hub-agent-token --namespace traefik-hub --from-lit
 
 # Deploy the stack on this cluster
 
-Then, you can configure flux and launch it on the fork.
+Then, you can configure flux and launch it on the fork. You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with repo access on your fork.
 
 ```shell
 export GITHUB_ACCOUNT=xxx
 export GITHUB_TOKEN=yyy
 
 # Configure Flux CD for a repository you owned
-flux create secret git git-auth  --url="https://github.com/${GITHUB_ACCOUNT}/traefik-hub-gitops" --namespace=flux-system -u git -p "${GITHUB_TOKEN}"
+flux create secret git git-auth  --url="https://github.com/traefik-workshops/traefik-hub-gitops" --namespace=flux-system -u git -p "${GITHUB_TOKEN}"
+
+# Change repository on flux for your fork
 sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/gotk-sync.yaml
+git commit -m "feat: GitOps on my fork" clusters/kind/flux-system/gotk-sync.yaml
+git push
 
 # Deploy GitRepository and Kustomization
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
