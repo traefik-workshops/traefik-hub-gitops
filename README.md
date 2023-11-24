@@ -34,7 +34,9 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 1. [kubectl](https://github.com/kubernetes/kubectl) command-line tool installed and configured to access the cluster
 2. [gh](https://cli.github.com/) command-line tool installed and configured with your account
 3. [Flux CD](https://fluxcd.io/flux/cmd/) command-line tool installed.
-4. A Kubernetes cluster running. In this tutorial, we'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
+4. A Kubernetes cluster running.  
+
+In this tutorial, you'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
 
 kind requires some configuration to use an IngressController on localhost, see the following example:
 
@@ -56,14 +58,14 @@ nodes:
     protocol: TCP
 ```
 
-All config files are in this public GitHub repository, so you may be interested to clone it:
+1. Clone this GitHub repository:
 
 ```shell
 git clone https://github.com/traefik-workshops/traefik-hub-gitops.git
 cd traefik-hub-gitops
 ```
 
-And create the kind Kubernetes cluster:
+2. Create the kind Kubernetes cluster:
 
 ```shell
 kind create cluster --config=kind.config
@@ -71,7 +73,7 @@ kubectl cluster-info
 kubectl wait --for=condition=ready nodes kind-control-plane
 ```
 
-You will also need a load balancer (LB) on this Kubernetes cluster:
+3. Add a load balancer (LB) to this Kubernetes cluster:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.11/config/manifests/metallb-native.yaml
@@ -81,8 +83,8 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 
 # Fork the repo and deploy Flux CD
 
-Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.
-You will also need a GitHub personal access token (PAT) with administration permissions.
+Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.  
+You will also need a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (PAT) with administration permissions.
 
 ```shell
 gh repo fork --remote
@@ -93,7 +95,7 @@ kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 
 Login to the [Traefik Hub UI](https://hub.traefik.io), add a [new agent](https://hub.traefik.io/agents/new) and copy your token.
 
-Now, open a terminal and run these commands to create secret needed for Traefik Hub
+Now, open a terminal and run these commands to create the secret needed for Traefik Hub.
 
 ```shell
 export TRAEFIK_HUB_TOKEN=xxx
@@ -103,7 +105,8 @@ kubectl create secret generic hub-agent-token --namespace traefik-hub --from-lit
 
 # Deploy the stack on this cluster
 
-Then, you can configure flux and launch it on the fork. You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with repo access on your fork.
+Then, you can configure flux and launch it on the fork.  
+You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with repo access on your fork.
 
 ```shell
 export GITHUB_ACCOUNT=xxx
@@ -121,7 +124,7 @@ git push
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```
 
-One can track Flux works with CLI:
+Track how Flux works from the CLI:
 
 ```shell
 flux get ks
@@ -133,31 +136,31 @@ You'll need to wait a few **minutes** before everything is ready.
 
 # Configure traffic generation
 
-In order to generate traffic, you can create user `admin`
+To generate traffic, create two users, an `admin` and a `support` user.
+
+Create the `admin` user in the Traefik Hub UI:
 
 ![Create user admin](./images/create-user-admin.png)
 
-And a user `support`
+Create the `support` user:
 
 ![Create user support](./images/create-user-support.png)
 
-When all _kustomization_ are **ready**, one can open API Portal, following URL available in the UI or in the CRD:
+When all *kustomization* are **ready**, you can open API Portal, following URL available in the UI or in the CRD:
 
 ```shell
 kubectl get apiportal
 ```
 
-On the API Portal, you can login:
+Log in to the API Portal:
 
 ![API Portal Login](./images/api-portal-login.png)
 
-And after create API Tokens:
+Now, create API tokens for both users.
 
 ![Create API Token](./images/create-api-token.png)
 
-For both users.
-
-With tokens, you can create a secret with it, in order to enable traffic app to generate load:
+Create a [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/) containing the tokens to enable the traffic app to generate load:
 
 ```shell
 export ADMIN_TOKEN="xxx"
@@ -179,7 +182,8 @@ By clicking on the left menu, you are able to access to all dashboards:
 
 # Clean up
 
-Everything is installed in kind, so it can be done by deleting the kind cluster:
+Everything is installed in kind.  
+You can delete the kind cluster with the following command:
 
 ```shell
 kind delete cluster
