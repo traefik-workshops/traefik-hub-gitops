@@ -47,6 +47,7 @@ cat kind.config
 ```yaml
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+name: traefik-hub-gitops
 nodes:
 - role: control-plane
   extraPortMappings:
@@ -186,7 +187,7 @@ Everything is installed in kind.
 You can delete the kind cluster with the following command:
 
 ```shell
-kind delete cluster
+kind delete cluster --name traefik-hub-gitops
 ```
 
 You may also want to delete agent in Traefik Hub UI.
