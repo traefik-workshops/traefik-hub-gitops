@@ -113,7 +113,7 @@ export GITHUB_ACCOUNT=xxx
 export GITHUB_TOKEN=yyy
 
 # Configure Flux CD for a repository you owned
-flux create secret git git-auth  --url="https://github.com/traefik-workshops/traefik-hub-gitops" --namespace=flux-system -u git -p "${GITHUB_TOKEN}"
+flux create secret git git-auth  --url="https://github.com/${GITHUB_ACCOUNT}/traefik-hub-gitops" --namespace=flux-system -u git -p "${GITHUB_TOKEN}"
 
 # Change repository on flux for your fork
 sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/gotk-sync.yaml
