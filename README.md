@@ -150,7 +150,12 @@ flux get ks
 
 # Configure traffic generation
 
-To generate traffic, create two users, an `admin` and a `support` user.
+To generate traffic, create two users, an `admin` and a `support` user and their groups.
+
+The `admin` user needs to be part of the `admin` group and the `support` user needs to be part of the `support` group.
+
+<details>
+  <summary>Traefik Hub UI</summary>
 
 Create the `admin` user in the Traefik Hub UI:
 
@@ -159,6 +164,8 @@ Create the `admin` user in the Traefik Hub UI:
 Create the `support` user:
 
 ![Create user support](./images/create-user-support.png)
+
+</details>
 
 When the Kustomization is **ready**, you can open API Portal, following URL available in the UI or in the CRD:
 
