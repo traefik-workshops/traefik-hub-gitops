@@ -34,7 +34,7 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 1. [kubectl](https://github.com/kubernetes/kubectl) command-line tool installed and configured to access the cluster
 2. [gh](https://cli.github.com/) command-line tool installed and configured with your account
 3. [Flux CD](https://fluxcd.io/flux/cmd/) command-line tool installed.
-4. A Kubernetes cluster running.  
+4. A Kubernetes cluster running.
 
 In this tutorial, you'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
 
@@ -83,7 +83,7 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 
 # Fork the repo and deploy Flux CD
 
-Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.  
+Flux needs to be able to commit on the repository, this tutorial can only work on a fork that *you* own.
 You will also need a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (PAT) with administration permissions.
 
 ```shell
@@ -105,7 +105,7 @@ kubectl create secret generic hub-agent-token --namespace traefik-hub --from-lit
 
 # Deploy the stack on this cluster
 
-Then, you can configure flux and launch it on the fork.  
+Then, you can configure flux and launch it on the fork.
 You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with repo access on your fork.
 
 ```shell
@@ -118,7 +118,7 @@ flux create secret git git-auth  --url="https://github.com/${GITHUB_ACCOUNT}/tra
 # Change repository on flux for your fork
 sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/gotk-sync.yaml
 git commit -m "feat: GitOps on my fork" clusters/kind/flux-system/gotk-sync.yaml
-git push
+git push origin
 
 # Deploy GitRepository and Kustomization
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
@@ -182,7 +182,7 @@ By clicking on the left menu, you are able to access to all dashboards:
 
 # Clean up
 
-Everything is installed in kind.  
+Everything is installed in kind.
 You can delete the kind cluster with the following command:
 
 ```shell
