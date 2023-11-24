@@ -19,8 +19,6 @@ configMapGenerator:
     namespace: monitoring
   - behavior: create
     files:
-      - cluster.json=grafana-dashboards/flux/cluster.json
       - control-plane.json=grafana-dashboards/flux/control-plane.json
-      - logs.json=grafana-dashboards/flux/logs.json
     name: grafana-flux-dashboards
     namespace: monitoring
