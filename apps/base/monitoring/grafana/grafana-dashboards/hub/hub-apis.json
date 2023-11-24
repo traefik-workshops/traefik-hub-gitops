@@ -175,7 +175,7 @@
           "disableTextWrap": false,
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count(count by(email) (traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}))",
+          "expr": "count(count by(email) (traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\",code!=\"401\"}))",
           "format": "table",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -252,7 +252,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (email) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
+          "expr": "sum by (email) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\",code!=\"401\"}[1m])) > 0",
           "instant": false,
           "interval": "",
           "legendFormat": "{{email}}",
@@ -729,8 +729,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": "customer-api-versioned",
-          "value": "customer-api-versioned"
+          "text": "customer-api",
+          "value": "customer-api"
         },
         "datasource": {
           "type": "prometheus",
@@ -797,6 +797,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 8,
+  "version": 29,
   "weekStart": ""
 }
