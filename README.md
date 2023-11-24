@@ -103,34 +103,48 @@ kubectl create namespace traefik-hub
 kubectl create secret generic hub-agent-token --namespace traefik-hub --from-literal=token=${TRAEFIK_HUB_TOKEN}
 ```
 
-# Deploy the stack on this cluster
+# Deploy the stack on the cluster
 
 Then, you can configure flux and launch it on the fork.
-You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with repo access on your fork.
+You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)(PAT) with repo access on your fork.
+
+First, export your GitHub username and your newly created PAT into a variable.  
 
 ```shell
 export GITHUB_ACCOUNT=xxx
 export GITHUB_TOKEN=yyy
+```
 
-# Configure Flux CD for a repository you owned
+Second, configure Flux CD for your fork of this tutorial.
+
+```shell
 flux create secret git git-auth  --url="https://github.com/${GITHUB_ACCOUNT}/traefik-hub-gitops" --namespace=flux-system -u git -p "${GITHUB_TOKEN}"
+```
 
-# Change repository on flux for your fork
+Third, adjust the repository on Flux to use your fork.
+
+```shell
 sed -i -e "s/traefik-workshops/${GITHUB_ACCOUNT}/g" clusters/kind/flux-system/gotk-sync.yaml
 git commit -m "feat: GitOps on my fork" clusters/kind/flux-system/gotk-sync.yaml
 git push origin
+```
 
-# Deploy GitRepository and Kustomization
+In the next step, deploy the repository.
+
+```shell
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```
 
-Track how Flux works from the CLI:
+This will start the [Kustomization](https://fluxcd.io/flux/components/kustomize/kustomizations/).  
+Flux will now sync, validate and deploy all components.
+
+This process will take several minutes.
+
+You can track the process from the CLI.
 
 ```shell
 flux get ks
 ```
-
-You'll need to wait a few **minutes** before everything is ready.
 
 ![Kustomizations are ready](./images/kustomizations-ready.png)
 
@@ -146,7 +160,7 @@ Create the `support` user:
 
 ![Create user support](./images/create-user-support.png)
 
-When all *kustomization* are **ready**, you can open API Portal, following URL available in the UI or in the CRD:
+When the Kustomization is **ready**, you can open API Portal, following URL available in the UI or in the CRD:
 
 ```shell
 kubectl get apiportal
