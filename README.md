@@ -23,9 +23,9 @@
 
 <div align="center">Welcome to this tutorial!</div>
 
-# Summary
+# About
 
-This tutorial details how to deploy locally a Kubernetes cluster, with GitOps and Observability components.
+This tutorial details how to deploy locally a Kubernetes cluster, with GitOps and observability components.
 
 # Prerequisites
 
