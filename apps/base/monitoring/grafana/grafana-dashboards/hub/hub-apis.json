@@ -496,7 +496,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "continuous-YlBl"
           },
           "custom": {
             "axisBorderShow": false,
@@ -537,10 +537,6 @@
               {
                 "color": "red",
                 "value": null
-              },
-              {
-                "color": "green",
-                "value": 10
               }
             ]
           },
@@ -728,7 +724,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "customer-api",
           "value": "customer-api"
         },
@@ -797,6 +793,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 29,
+  "version": 36,
   "weekStart": ""
 }
