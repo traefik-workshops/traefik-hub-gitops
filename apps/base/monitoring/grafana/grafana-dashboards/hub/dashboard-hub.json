@@ -18,6 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -113,12 +114,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_api_nodes_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "nodes",
-          "range": true,
+          "range": false,
           "refId": "A"
         },
         {
@@ -127,12 +129,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_acps_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "acps",
-          "range": true,
+          "range": false,
           "refId": "B"
         },
         {
@@ -144,10 +147,10 @@
           "exemplar": false,
           "expr": "traefik_hub_api_collections_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "api collections",
-          "range": true,
+          "range": false,
           "refId": "C"
         },
         {
@@ -159,10 +162,10 @@
           "exemplar": false,
           "expr": "traefik_hub_api_rate_limits_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "api rate limits",
-          "range": true,
+          "range": false,
           "refId": "D"
         },
         {
@@ -171,12 +174,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_api_accesses_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "api accesses",
-          "range": true,
+          "range": false,
           "refId": "E"
         },
         {
@@ -185,12 +189,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_api_gateways_ratio",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "gateways",
-          "range": true,
+          "range": false,
           "refId": "F"
         },
         {
@@ -199,12 +204,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_portals_ratio{portal_type=\"single_cluster\"}",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "portals",
-          "range": true,
+          "range": false,
           "refId": "G"
         },
         {
@@ -213,12 +219,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_api_gateway_apis_ratio{}",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "apis",
-          "range": true,
+          "range": false,
           "refId": "H"
         },
         {
@@ -227,12 +234,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "traefik_hub_api_versions_ratio{}",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "api versions",
-          "range": true,
+          "range": false,
           "refId": "I"
         },
         {
@@ -241,12 +249,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
+          "exemplar": false,
           "expr": "sum(traefik_hub_api_keys_ratio{})",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "api keys",
-          "range": true,
+          "range": false,
           "refId": "J"
         }
       ],
@@ -254,7 +263,7 @@
       "type": "barchart"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "tags": [
     "kubernetes"
@@ -263,7 +272,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
