@@ -440,7 +440,7 @@
               }
             ]
           },
-          "unit": "percent"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -474,7 +474,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "100*sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"(2.+|401)\", api_version_name=~\"$api_version_name\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code=~\"(2.+|401)\", api_version_name=~\"$api_version_name\"}[$__range]))",
+          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"(2.+|401)\", api_version_name=~\"$api_version_name\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[$__range]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -496,7 +496,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-YlBl"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": false,
@@ -724,9 +724,9 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": false,
-          "text": "customer-api",
-          "value": "customer-api"
+          "selected": true,
+          "text": "ticket-api",
+          "value": "ticket-api"
         },
         "datasource": {
           "type": "prometheus",
@@ -793,6 +793,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 36,
+  "version": 43,
   "weekStart": ""
 }

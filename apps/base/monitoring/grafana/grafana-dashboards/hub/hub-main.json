@@ -4,8 +4,8 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "grafana",
-          "uid": "-- Grafana --"
+          "type": "datasource",
+          "uid": "grafana"
         },
         "enable": true,
         "hide": false,
@@ -177,14 +177,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (api_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
+          "expr": "sum by (api_name, api_version_name) (rate(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[1m])) > 0",
           "instant": false,
-          "legendFormat": "__auto",
+          "legendFormat": "{{api_name}} {{api_version_name}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Per API",
+      "title": "Distribution",
       "type": "piechart"
     },
     {
@@ -414,7 +414,7 @@
         "defaults": {
           "color": {
             "fixedColor": "red",
-            "mode": "thresholds",
+            "mode": "continuous-BlYlRd",
             "seriesBy": "last"
           },
           "custom": {
@@ -463,10 +463,6 @@
               {
                 "color": "red",
                 "value": null
-              },
-              {
-                "color": "green",
-                "value": 1
               }
             ]
           }
@@ -913,9 +909,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -949,6 +949,6 @@
   "timezone": "",
   "title": "Hub Dashboard",
   "uid": "c54cf5b9-6504-4074-9b5a-f9af39c8e1fb",
-  "version": 6,
+  "version": 13,
   "weekStart": ""
 }
