@@ -474,7 +474,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"(2.+|401)\", api_version_name=~\"$api_version_name\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[$__range]))",
+          "expr": "sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", code!~\"(2.+)\", api_version_name=~\"$api_version_name\"}[$__range]))/sum(increase(traefik_hub_api_requests_total{api_name=~\"$api_name\", api_version_name=~\"$api_version_name\"}[$__range]))",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -725,8 +725,8 @@
         "allValue": ".*",
         "current": {
           "selected": true,
-          "text": "ticket-api",
-          "value": "ticket-api"
+          "text": "employee-api",
+          "value": "employee-api"
         },
         "datasource": {
           "type": "prometheus",
@@ -793,6 +793,6 @@
   "timezone": "",
   "title": "API",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038725",
-  "version": 43,
+  "version": 48,
   "weekStart": ""
 }
