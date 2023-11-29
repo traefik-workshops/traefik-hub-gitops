@@ -26,6 +26,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
+  "id": 5,
   "links": [
     {
       "asDropdown": false,
@@ -599,8 +600,8 @@
         "allValue": ".*",
         "current": {
           "selected": false,
-          "text": "julien.salleyron@traefik.io",
-          "value": "julien.salleyron@traefik.io"
+          "text": "admin@traefik.io",
+          "value": "admin@traefik.io"
         },
         "datasource": {
           "type": "prometheus",
@@ -667,6 +668,6 @@
   "timezone": "",
   "title": "Users",
   "uid": "bbc789b4-e88e-42a1-b969-1ce2b0038720",
-  "version": 6,
+  "version": 1,
   "weekStart": ""
 }
