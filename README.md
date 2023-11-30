@@ -66,7 +66,11 @@ git clone https://github.com/traefik-workshops/traefik-hub-gitops.git
 cd traefik-hub-gitops
 ```
 
-2. Create the kind Kubernetes cluster:
+2. Create the Kubernetes cluster:
+
+a. Using kind
+
+Create the cluster:
 
 ```shell
 kind create cluster --config=kind.config
@@ -74,12 +78,18 @@ kubectl cluster-info
 kubectl wait --for=condition=ready nodes kind-control-plane
 ```
 
-3. Add a load balancer (LB) to this Kubernetes cluster:
+Add a load balancer (LB) to this Kubernetes cluster:
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.11/config/manifests/metallb-native.yaml
 kubectl wait --namespace metallb-system --for=condition=ready pod --selector=app=metallb --timeout=90s
 kubectl apply -f clusters/kind/metallb-config.yaml
+```
+
+b. Using k3d
+
+```shell
+ k3d cluster create traefik-hub-gitops --port 80:80@loadbalancer --port 443:443@loadbalancer --port 8000:8000@loadbalancer --k3s-arg "--disable=traefik@server:0"
 ```
 
 # Fork the repo and deploy Flux CD
@@ -94,7 +104,8 @@ kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 
 # Configure Traefik Hub
 
-Login to the [Traefik Hub UI](https://hub.traefik.io), add a [new agent](https://hub.traefik.io/agents/new) and copy your token.
+Login to the [Traefik Hub UI](https://hub.traefik.io), open the page to [generate a new agent](https://hub.traefik.io/agents/new).
+**Do not install the agent, but copy your token.**
 
 Now, open a terminal and run these commands to create the secret needed for Traefik Hub.
 
@@ -204,11 +215,16 @@ By clicking on the left menu, you are able to access to all dashboards:
 
 # Clean up
 
-Everything is installed in kind.
-You can delete the kind cluster with the following command:
+Everything is installed in Kubernetes.
+You can delete the Kubernetes cluster with the following command:
 
 ```shell
+# kind
 kind delete cluster --name traefik-hub-gitops
+```
+```shell
+# kind
+k3D delete cluster traefik-hub-gitops
 ```
 
 You may also want to delete agent in Traefik Hub UI.
