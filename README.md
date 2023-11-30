@@ -68,7 +68,7 @@ cd traefik-hub-gitops
 
 2. Create the Kubernetes cluster:
 
-a. Using kind
+* Using kind
 
 Create the cluster:
 
@@ -86,7 +86,7 @@ kubectl wait --namespace metallb-system --for=condition=ready pod --selector=app
 kubectl apply -f clusters/kind/metallb-config.yaml
 ```
 
-b. Using k3d
+* Using k3d
 
 ```shell
  k3d cluster create traefik-hub-gitops --port 80:80@loadbalancer --port 443:443@loadbalancer --port 8000:8000@loadbalancer --k3s-arg "--disable=traefik@server:0"
