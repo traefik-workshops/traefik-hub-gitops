@@ -9,7 +9,7 @@ metadata:
     module: crm
 spec:
   pathPrefix: "/customers-versioned"
-  currentVersion: customer-api-v2-1-0
+  currentVersion: v2-1-0
 
 ---
 apiVersion: hub.traefik.io/v1alpha1
