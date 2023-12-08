@@ -229,3 +229,7 @@ k3D delete cluster traefik-hub-gitops
 ```
 
 You may also want to delete agent in Traefik Hub UI.
+
+## License
+
+The content in this repository is licensed under the [Apache 2 License](https://www.apache.org/licenses/LICENSE-2.0 "Link to Apache 2 license").
