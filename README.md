@@ -120,7 +120,7 @@ kubectl create secret generic hub-agent-token --namespace traefik-hub --from-lit
 Then, you can configure flux and launch it on the fork.
 You'll need to create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)(PAT) with repo access on your fork.
 
-First, export your GitHub username and your newly created PAT into a variable.  
+First, export your GitHub username and your newly created PAT into a variable.
 
 ```shell
 export GITHUB_ACCOUNT=xxx
@@ -147,7 +147,7 @@ In the next step, deploy the repository.
 kubectl apply -f clusters/kind/flux-system/gotk-sync.yaml
 ```
 
-This will start the [Kustomization](https://fluxcd.io/flux/components/kustomize/kustomizations/).  
+This will start the [Kustomization](https://fluxcd.io/flux/components/kustomize/kustomizations/).
 Flux will now sync, validate and deploy all components.
 
 This process will take several minutes.
@@ -229,3 +229,7 @@ k3D delete cluster traefik-hub-gitops
 ```
 
 You may also want to delete agent in Traefik Hub UI.
+
+## License
+
+The content in this repository is licensed under the [Apache 2 License](https://www.apache.org/licenses/LICENSE-2.0 "Link to Apache 2 license").
