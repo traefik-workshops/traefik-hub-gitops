@@ -36,7 +36,7 @@ If you'd like to follow along with this tutorial on your own machine, you'll nee
 3. [Flux CD](https://fluxcd.io/flux/cmd/) command-line tool installed.
 4. A Kubernetes cluster running.
 
-In this tutorial, you'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers or others.
+In this tutorial, you'll use [kind](https://kind.sigs.k8s.io). You may also use alternatives like [k3d](https://k3d.io/), cloud providers, or others.
 
 kind requires some configuration to use an IngressController on localhost, see the following example:
 
@@ -89,7 +89,7 @@ kubectl apply -f clusters/kind/metallb-config.yaml
 **Using k3d**
 
 ```shell
- k3d cluster create traefik-hub-gitops --port 80:80@loadbalancer --port 443:443@loadbalancer --port 8000:8000@loadbalancer --k3s-arg "--disable=traefik@server:0"
+k3d cluster create traefik-hub-gitops --port 80:80@loadbalancer --port 443:443@loadbalancer --port 8000:8000@loadbalancer --k3s-arg "--disable=traefik@server:0"
 ```
 
 # Fork the repo and deploy Flux CD
@@ -209,9 +209,29 @@ Prometheus is on http://prometheus.docker.localhost
 
 Default credentials are login: admin and password: admin.
 
-By clicking on the left menu, you are able to access to all dashboards:
+By clicking on the left menu, you can access all dashboards:
 
 ![Grafana Dashboards](./images/grafana-dashboards.png)
+
+## Enable event correlation
+
+**Flux events**: Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
+and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file. 
+Now, Flux can create annotations of reconciliation events in the dashboards.
+
+**GitHub PR merges**: Add a new Grafana connection (GitHub data source) at http://grafana.docker.localhost/connections/datasources/grafana-github-datasource
+You must add a Personal Access Token (PAT) to GitHub at https://github.com/settings/tokens/new, as explained in the Grafana connection creation wizard.
+When configured, edit the dashboards to add new annotations using the GitHub data source:
+- Show in: All panels
+- Query type: Pull Requests
+- Owner / Repository: your user and the repo name of the fork
+- Query: leave it empty
+- Time Field: MergedAt
+- Annotations:
+  - Time field: `merged_at (time)`
+  - Title: `title (string)`
+  - Text: `url (string)`
+  - End time + tags + id: leave them empty
 
 # Clean up
 
@@ -228,7 +248,7 @@ kind delete cluster --name traefik-hub-gitops
 k3d delete cluster traefik-hub-gitops
 ```
 
-You may also want to delete agent in Traefik Hub UI.
+You may also want to delete the agent in Traefik Hub UI.
 
 ## License
 
