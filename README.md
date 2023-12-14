@@ -221,6 +221,7 @@ and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-graf
 ```shell
 export GRAFANA_TOKEN="xxx"
 sed -i -e "s/token:\(.*\)/token: \""${GRAFANA_TOKEN}"\"/g" apps/base/monitoring/flux-grafana.yaml
+```
 
 Now, Flux can create annotations of reconciliation events in the dashboards.
 
