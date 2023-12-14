@@ -28,7 +28,7 @@ spec:
       ingressClass:
         enabled: false
     service:
-      type: loadbalancer
+      type: LoadBalancer
       # Needed on local Kind k8s cluster.
       # Can be removed or customized as needed on other k8s cluster.
       ports:
