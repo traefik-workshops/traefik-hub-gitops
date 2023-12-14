@@ -225,7 +225,7 @@ kind delete cluster --name traefik-hub-gitops
 
 ```shell
 # k3d
-k3D delete cluster traefik-hub-gitops
+k3d delete cluster traefik-hub-gitops
 ```
 
 You may also want to delete agent in Traefik Hub UI.
