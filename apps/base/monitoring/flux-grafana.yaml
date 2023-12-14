@@ -30,4 +30,4 @@ metadata:
   name: grafana-auth
   namespace: monitoring
 stringData:
-  token: "glsa_Q5Ebm9dBrFekrw3SNHz8imVJLByhAqhb_b5d1511e - add a new service account with a new key at http://grafana.docker.localhost/org/serviceaccounts"
+  token: "see README.md"
