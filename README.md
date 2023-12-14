@@ -217,6 +217,11 @@ By clicking on the left menu, you can access all dashboards:
 
 **Flux events**: Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
 and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file. 
+
+```shell
+export GRAFANA_TOKEN="xxx"
+sed -i -e "s/token:\(.*\)/token: \""${GRAFANA_TOKEN}"\"/g" apps/base/monitoring/flux-grafana.yaml
+
 Now, Flux can create annotations of reconciliation events in the dashboards.
 
 **GitHub PR merges**: Add a new Grafana connection (GitHub data source) at http://grafana.docker.localhost/connections/datasources/grafana-github-datasource
