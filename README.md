@@ -75,7 +75,7 @@ Create the cluster:
 ```shell
 kind create cluster --config=kind.config
 kubectl cluster-info
-kubectl wait --for=condition=ready nodes kind-control-plane
+kubectl wait --for=condition=ready nodes traefik-hub-gitops-control-plane
 ```
 
 Add a load balancer (LB) to this Kubernetes cluster:
