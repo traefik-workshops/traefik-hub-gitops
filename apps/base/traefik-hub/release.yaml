@@ -24,9 +24,6 @@ spec:
       - --hub.metrics.opentelemetry.insecure
       - --hub.metrics.opentelemetry.address=prometheus.monitoring:9090
       - --hub.metrics.opentelemetry.path=/api/v1/otlp/v1/metrics
-    providers:
-      ingressClass:
-        enabled: false
     service:
       type: LoadBalancer
       # Needed on local Kind k8s cluster.
