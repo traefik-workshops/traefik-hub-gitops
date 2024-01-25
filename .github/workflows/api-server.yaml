@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflow/api-server.yaml'
+      - '.github/workflows/api-server.yaml'
       - 'api-server/**'
   push:
     branches:
@@ -39,7 +39,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ github.repository_owner }}/${{ github.repository }}
+            ${{ env.REGISTRY }}/${{ github.repository_owner }}/api-server
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=match,pattern=api-server_v\d+.\d+.\d+
