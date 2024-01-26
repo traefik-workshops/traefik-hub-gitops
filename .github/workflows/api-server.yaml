@@ -11,7 +11,7 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflow/api-server.yaml'
+      - '.github/workflows/api-server.yaml'
       - 'api-server/**'
     tags:
       - 'api-server_v[0-9]+.[0-9]+.[0-9]+'
@@ -42,7 +42,7 @@ jobs:
             ${{ env.REGISTRY }}/${{ github.repository_owner }}/api-server
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=match,pattern=api-server_v\d+.\d+.\d+
+            type=match,pattern=api-server_(v\d+.\d+.\d+)
             type=raw,value={{branch}}-{{sha}}-{{date 'X'}},enable={{is_default_branch}}
             type=ref,event=pr
       - name: build docker images
