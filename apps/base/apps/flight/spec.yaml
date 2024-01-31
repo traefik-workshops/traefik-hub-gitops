@@ -23,7 +23,7 @@ data:
       /flights:
         get:
           summary: Retrieve flights
-          operationId: gettFlights
+          operationId: getFlights
           tags:
             - flights
           parameters:
