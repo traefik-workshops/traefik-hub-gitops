@@ -8,10 +8,10 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: fix/image
+    branch: master
   secretRef:
     name: git-auth
-  url: https://github.com/darkweaver87/traefik-hub-gitops.git
+  url: https://github.com/traefik-workshops/traefik-hub-gitops.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
