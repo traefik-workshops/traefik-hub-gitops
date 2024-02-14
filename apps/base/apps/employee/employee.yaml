@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: mmatur/traefik-hub:kubecon
+          image: ghcr.io/traefik-workshops/api-server:v0.1.0
           args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "2"]
           imagePullPolicy: Always
           volumeMounts:
@@ -83,7 +83,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: mmatur/traefik-hub:kubecon
+          image: ghcr.io/traefik-workshops/api-server:v0.1.0
           args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "40"]
           imagePullPolicy: Always
           volumeMounts:
@@ -133,7 +133,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: mmatur/traefik-hub:kubecon
+          image: ghcr.io/traefik-workshops/api-server:v0.1.0
           args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-latency", "400ms"]
           imagePullPolicy: Always
           volumeMounts:

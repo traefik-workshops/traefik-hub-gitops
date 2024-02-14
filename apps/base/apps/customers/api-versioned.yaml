@@ -27,8 +27,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
 
 ---
 apiVersion: hub.traefik.io/v1alpha1
@@ -49,8 +47,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
 
 ---
 apiVersion: hub.traefik.io/v1alpha1
@@ -71,8 +67,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
 
 ---
 apiVersion: hub.traefik.io/v1alpha1
@@ -98,8 +92,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
 
 ---
 apiVersion: hub.traefik.io/v1alpha1
@@ -120,8 +112,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
   cors:
     allowCredentials: true
     allowHeaders:
