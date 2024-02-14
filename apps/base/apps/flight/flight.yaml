@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: mmatur/traefik-hub:kubecon
+          image: ghcr.io/traefik-workshops/api-server:v0.1.0
           args: ["-data", "/api/api.json", "-openapi", "/public/openapi.yaml", "-errorrate", "2"]
           imagePullPolicy: Always
           volumeMounts:

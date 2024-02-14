@@ -112,8 +112,6 @@ spec:
       number: 3000
     openApiSpec:
       path: /openapi.yaml
-      port:
-        number: 3000
   cors:
     allowCredentials: true
     allowHeaders:
