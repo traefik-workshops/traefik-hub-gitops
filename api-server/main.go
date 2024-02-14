@@ -2,12 +2,16 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
+	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/tidwall/gjson"
 )
 
 func main() {
@@ -56,6 +60,19 @@ func main() {
 			}
 			switch req.Method {
 			case http.MethodGet, http.MethodPut:
+				pattern := regexp.MustCompile(`/(\d+)`)
+
+				// Extract the integer value from the URL path
+				matches := pattern.FindStringSubmatch(req.URL.Path)
+
+				// If the URL path contains an integer
+				if len(matches) > 1 {
+					results := gjson.GetBytes(data, fmt.Sprintf("*.%s", matches[1]))
+					rw.WriteHeader(http.StatusOK)
+					_, _ = rw.Write([]byte(results.Raw))
+					return
+				}
+
 				rw.WriteHeader(http.StatusOK)
 				_, _ = rw.Write(data)
 			case http.MethodPost:
