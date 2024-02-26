@@ -8,10 +8,10 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: oas-port-update
+    branch: master
   secretRef:
     name: git-auth
-  url: https://github.com/immanuelfodor/traefik-hub-gitops-2.git
+  url: https://github.com/traefik-workshops/traefik-hub-gitops.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -73,20 +73,20 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-#---
-#apiVersion: kustomize.toolkit.fluxcd.io/v1
-#kind: Kustomization
-#metadata:
-#  name: traffic
-#  namespace: flux-system
-#spec:
-#  interval: 10s
-#  path: ./apps/base/traffic
-#  force: true
-#  prune: true
-#  sourceRef:
-#    kind: GitRepository
-#    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: traffic
+  namespace: flux-system
+spec:
+  interval: 10s
+  path: ./apps/base/traffic
+  force: true
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
