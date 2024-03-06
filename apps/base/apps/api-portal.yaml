@@ -8,5 +8,5 @@ spec:
   description: "API Portal"
   apiGateway: api-gateway
   ui:
-    logoUrl: https://doc.traefik.io/traefik-hub/assets/img/traefik-hub-logo.svg
+    logoUrl: https://doc.traefik.io/traefik-hub/img/traefik-hub-logo.svg
   customDomains: []
