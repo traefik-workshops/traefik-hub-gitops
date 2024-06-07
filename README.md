@@ -1,5 +1,7 @@
 <br/>
 
+> Since the end of May 2024, Traefik Hub tutorials has moved to [traefik/hub](https://github.com/traefik/hub) repository
+
 <div align="center" style="margin: 30px;">
 <a href="https://hub.traefik.io/">
   <img src="https://doc.traefik.io/traefik-hub/img/hub-logo-light.svg" style="width:250px;" align="center" />
@@ -216,7 +218,7 @@ By clicking on the left menu, you can access all dashboards:
 ## Enable event correlation
 
 **Flux events**: Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
-and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file. 
+and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file.
 
 ```shell
 export GRAFANA_TOKEN="xxx"
