@@ -11,7 +11,7 @@ spec:
       chart: traefik-helm-chart
       sourceRef:
         kind: HelmRepository
-        name: traefik-hub
+        name: traefik
   interval: 50m
   install:
     remediation:
