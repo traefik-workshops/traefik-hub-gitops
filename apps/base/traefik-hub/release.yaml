@@ -16,6 +16,8 @@ spec:
   install:
     remediation:
       retries: 15
+  upgrade:
+    crds: CreateReplace
   values:
     hub:
       token: hub-agent-token
