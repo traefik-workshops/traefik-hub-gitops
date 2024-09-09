@@ -8,8 +8,7 @@ spec:
   releaseName: traefik-hub
   chart:
     spec:
-      chart: traefik-hub
-      version: v4.0.0
+      chart: traefik
       sourceRef:
         kind: HelmRepository
         name: traefik-hub
@@ -20,6 +19,21 @@ spec:
   upgrade:
     crds: CreateReplace
   values:
+    hub:
+      token: token
+      apimanagement:
+        enabled: true
+
+    image:
+      registry: ghcr.io
+      repository: traefik/traefik-hub
+      tag: v3.4.0
+      pullPolicy: Always
+
+    ingressRoute:
+      dashboard:
+        enabled: true
+
     additionalArguments:
       - --hub.metrics.opentelemetry.insecure
       - --hub.metrics.opentelemetry.address=prometheus.monitoring:9090
