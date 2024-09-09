@@ -8,10 +8,10 @@ spec:
   releaseName: traefik-hub
   chart:
     spec:
-      chart: traefik-helm-chart
+      chart: traefik
       sourceRef:
         kind: HelmRepository
-        name: traefik
+        name: traefik-hub
   interval: 50m
   install:
     remediation:
@@ -24,7 +24,7 @@ spec:
 
     image:
       registry: ghcr.io
-      repository: traefik/traefik-hub
+      repository: traefik/traefik
       tag: v3.4.0
       pullPolicy: Always
 
