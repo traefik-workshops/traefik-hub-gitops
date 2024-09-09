@@ -1,5 +1,5 @@
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: API
 metadata:
   name: world-time-api-external-name
@@ -17,7 +17,7 @@ spec:
       number: 443
 
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: API
 metadata:
   name: httpbin-external-name

@@ -1,5 +1,5 @@
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: APIAccess
 metadata:
   name: crm-internal
@@ -12,7 +12,7 @@ spec:
       area: employee
 
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: APIAccess
 metadata:
   name: crm-all
@@ -24,7 +24,7 @@ spec:
       module: crm
 
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: APIAccess
 metadata:
   name: custom-pick
@@ -43,7 +43,7 @@ spec:
           - tickets
 
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: APIAccess
 metadata:
   name: admins

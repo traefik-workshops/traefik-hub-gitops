@@ -1,5 +1,5 @@
 ---
-apiVersion: hub.traefik.io/v1
+apiVersion: hub.traefik.io/v1alpha1
 kind: APIPortal
 metadata:
   name: api-portal
