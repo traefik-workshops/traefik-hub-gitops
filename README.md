@@ -160,6 +160,13 @@ You can track the process from the CLI.
 flux get ks
 ```
 
+If any of the kustomizations are stuck just run the:
+
+```bash
+kubectl delete mutatingwebhookconfigurations hub-api
+kubectl delete mutatingwebhookconfigurations hub-acp
+```
+
 ![Kustomizations are ready](./images/kustomizations-ready.png)
 
 # Configure traffic generation
