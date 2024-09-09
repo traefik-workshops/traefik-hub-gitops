@@ -9,6 +9,8 @@ spec:
   interval: 1m0s
   ref:
     branch: master
+  secretRef:
+    name: git-auth
   url: https://github.com/traefik-workshops/traefik-hub-gitops.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
