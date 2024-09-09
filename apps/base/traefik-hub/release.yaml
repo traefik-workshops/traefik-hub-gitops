@@ -8,7 +8,7 @@ spec:
   releaseName: traefik-hub
   chart:
     spec:
-      chart: traefik
+      chart: traefik-helm-chart
       sourceRef:
         kind: HelmRepository
         name: traefik-hub
