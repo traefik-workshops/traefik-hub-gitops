@@ -24,7 +24,7 @@ spec:
 
     image:
       registry: ghcr.io
-      repository: traefik/traefik
+      repository: traefik/traefik-hub
       tag: v3.4.0
       pullPolicy: Always
 
