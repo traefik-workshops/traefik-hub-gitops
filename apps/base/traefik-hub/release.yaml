@@ -8,22 +8,32 @@ spec:
   releaseName: traefik-hub
   chart:
     spec:
-      chart: traefik-hub
-      version: v4.0.0
+      chart: traefik
       sourceRef:
         kind: HelmRepository
         name: traefik-hub
   interval: 50m
   install:
     remediation:
-      retries: 3
+      retries: 15
   upgrade:
     crds: CreateReplace
   values:
-    additionalArguments:
-      - --hub.metrics.opentelemetry.insecure
-      - --hub.metrics.opentelemetry.address=prometheus.monitoring:9090
-      - --hub.metrics.opentelemetry.path=/api/v1/otlp/v1/metrics
+    hub:
+      token: hub-agent-token
+      apimanagement:
+        enabled: true
+
+    image:
+      registry: ghcr.io
+      repository: traefik/traefik-hub
+      tag: v3.4.0
+      pullPolicy: Always
+
+    ingressRoute:
+      dashboard:
+        enabled: true
+
     service:
       type: LoadBalancer
       # Needed on local Kind k8s cluster.

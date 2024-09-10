@@ -11,7 +11,21 @@ spec:
     branch: master
   secretRef:
     name: git-auth
-  url: https://github.com/traefik-workshops/traefik-hub-gitops.git
+  url: https://github.com/qdnqn/traefik-hub-gitops.git
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: traefik-crds
+  namespace: flux-system
+spec:
+  interval: 10m0s
+  path: ./clusters/kind/
+  force: true
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -20,7 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/kind/flux-system
+  path: ./apps/base/crds
   force: true
   prune: true
   sourceRef:
