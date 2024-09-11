@@ -19,7 +19,7 @@ metadata:
 spec:
   groups:
     - crm-user
-  apiCollectionSelector:
+  apiSelector:
     matchLabels:
       module: crm
 
