@@ -33,7 +33,6 @@ spec:
     - support
   apis:
     - name: world-time-api-external-name
-      namespace: apps
   apiSelector:
     matchExpressions:
       - key: area
@@ -41,7 +40,6 @@ spec:
         values:
           - flights
           - tickets
-
 ---
 apiVersion: hub.traefik.io/v1alpha1
 kind: APIAccess
