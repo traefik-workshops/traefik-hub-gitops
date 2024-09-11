@@ -9,6 +9,5 @@ resources:
   - flight/
   - ticket/
   - api-access.yaml
-  - api-gateway.yaml
   - api-portal.yaml
   - api-rate-limit.yaml
