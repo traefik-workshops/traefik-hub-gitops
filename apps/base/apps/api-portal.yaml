@@ -6,7 +6,23 @@ metadata:
 spec:
   title: "Traefik Hub"
   description: "API Portal"
-  apiGateway: api-gateway
+  trustedUrls:
+    - "http://portal.docker.localhost"
   ui:
     logoUrl: https://doc.traefik.io/traefik-hub/img/traefik-hub-logo.svg
   customDomains: []
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: my-portal-ingress
+  namespace: traefik-hub
+  annotations:
+    hub.traefik.io/api-portal: api-portal
+spec:
+  routes:
+    - match: Host(`portal.docker.localhost`)
+      kind: Rule
+      services:
+        - name: apiportal
+          port: 9903
