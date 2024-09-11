@@ -26,6 +26,10 @@ spec:
 
     additionalArguments:
       - "--providers.kubernetescrd.allowCrossNamespace=true"
+      - "--providers.kubernetesingress.allowemptyservices=true"
+      - "--providers.kubernetesingress.allowexternalnameservices=true"
+      - "--providers.kubernetescrd.allowemptyservices=true"
+      - "--providers.kubernetescrd.allowexternalnameservices=true"
 
     image:
       registry: ghcr.io
