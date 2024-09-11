@@ -24,6 +24,9 @@ spec:
       apimanagement:
         enabled: true
 
+    additionalArguments:
+      - "--providers.kubernetescrd.allowCrossNamespace=true"
+
     image:
       registry: ghcr.io
       repository: traefik/traefik-hub
