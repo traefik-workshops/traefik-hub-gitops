@@ -11,7 +11,7 @@ spec:
     branch: master
   secretRef:
     name: git-auth
-  url: https://github.com/traefik-workshops/traefik-hub-gitops.git
+  url: https://github.com/qdnqn/traefik-hub-gitops.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
