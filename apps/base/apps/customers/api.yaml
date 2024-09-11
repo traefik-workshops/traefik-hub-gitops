@@ -9,9 +9,14 @@ metadata:
     module: crm
 spec:
   pathPrefix: "/customers"
-  service:
-    openApiSpec:
-      path: /openapi.yaml
-    name: customer-app
-    port:
-      number: 3000
+  openApiSpec:
+    path: /openapi.yaml
+    backend:
+      service:
+        name: customer-app
+        port:
+          number: 3000
+    operationSets:
+      - name: customers-operations # The name that will be used when referenced
+        matchers:
+          - pathPrefix: /customers
