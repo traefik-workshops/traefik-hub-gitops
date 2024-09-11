@@ -131,6 +131,9 @@ spec:
   routes:
     - match: Host(`api.docker.localhost`) && PathPrefix(`/customers-versioned`)
       kind: Rule
+      middlewares:
+        - name: cors-headers-middleware
+          namespace: apps
       services:
         - name: customer-app-v2
           port: 3000
