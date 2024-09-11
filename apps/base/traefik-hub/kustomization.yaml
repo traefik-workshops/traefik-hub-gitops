@@ -6,3 +6,4 @@ resources:
   - namespace.yaml
   - repository.yaml
   - release.yaml
+  - api-portal-ingress-route.yaml
