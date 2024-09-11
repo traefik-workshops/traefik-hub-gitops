@@ -4,7 +4,7 @@ metadata:
   name: external-ingress-world-time
   namespace: apps
   annotations:
-    hub.traefik.io/api: customer-api
+    hub.traefik.io/api: world-time-api-external-name
 spec:
   routes:
     - match: Host(`api.docker.localhost`) && PathPrefix(`/world-time-api`)
@@ -32,7 +32,7 @@ metadata:
   name: external-ingress-httpbin
   namespace: apps
   annotations:
-    hub.traefik.io/api: customer-api
+    hub.traefik.io/api: httpbin-external-name
 spec:
   routes:
     - match: Host(`api.docker.localhost`) && PathPrefix(`/httpbin`)

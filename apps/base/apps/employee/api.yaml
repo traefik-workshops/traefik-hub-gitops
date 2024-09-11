@@ -5,7 +5,7 @@ metadata:
   name: employee-ingress
   namespace: apps
   annotations:
-    hub.traefik.io/api: customer-api
+    hub.traefik.io/api: employee-api
 spec:
   routes:
     - match: Host(`api.docker.localhost`) && PathPrefix(`/employees`)

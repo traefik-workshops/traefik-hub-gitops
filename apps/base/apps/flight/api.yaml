@@ -5,7 +5,7 @@ metadata:
   name: flight-ingress
   namespace: apps
   annotations:
-    hub.traefik.io/api: customer-api
+    hub.traefik.io/api: flight-api
 spec:
   routes:
     - match: Host(`api.docker.localhost`) && PathPrefix(`/flights`)
