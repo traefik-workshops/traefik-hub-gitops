@@ -10,7 +10,6 @@ spec:
     - "http://portal.docker.localhost"
   ui:
     logoUrl: https://doc.traefik.io/traefik-hub/img/traefik-hub-logo.svg
-  customDomains: []
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
