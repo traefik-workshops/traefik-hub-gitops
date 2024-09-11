@@ -1,4 +1,19 @@
 ---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ticket-ingress
+  namespace: apps
+  annotations:
+    hub.traefik.io/api: customer-api
+spec:
+  routes:
+    - match: Host(`api.docker.localhost`) && PathPrefix(`/tickets`)
+      kind: Rule
+      services:
+        - name: ticket-app
+          port: 3000
+---
 apiVersion: hub.traefik.io/v1alpha1
 kind: API
 metadata:
@@ -8,10 +23,5 @@ metadata:
     area: tickets
     module: crm
 spec:
-  pathPrefix: "/tickets"
-  service:
-    openApiSpec:
-      path: /openapi.yaml
-    name: ticket-app
-    port:
-      number: 3000
+  openApiSpec:
+    path: /openapi.yaml

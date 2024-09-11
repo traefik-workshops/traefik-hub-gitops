@@ -8,15 +8,20 @@ metadata:
     area: customers
     module: crm
 spec:
-  pathPrefix: "/customers"
   openApiSpec:
     path: /openapi.yaml
-    backend:
-      service:
-        name: customer-app
-        port:
-          number: 3000
-    operationSets:
-      - name: customers-operations # The name that will be used when referenced
-        matchers:
-          - pathPrefix: /customers
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: customers-ingress
+  namespace: apps
+  annotations:
+    hub.traefik.io/api: customer-api
+spec:
+  routes:
+    - match: Host(`api.docker.localhost`) && PathPrefix(`/customers`)
+      kind: Rule
+      services:
+        - name: customer-app
+          port: 3000
