@@ -39,5 +39,3 @@ metadata:
 spec:
   limit: 2000
   period: 65s
-  anyGroups: true
-  apiSelector: {}
