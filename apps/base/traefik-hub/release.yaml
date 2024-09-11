@@ -35,11 +35,10 @@ spec:
         enabled: true
 
     ports:
-      traefik:
-        web:
-          nodePort: 30000
-        websecure:
-          nodePort: 30001
+      web:
+        nodePort: 30000
+      websecure:
+        nodePort: 30001
 
     service:
       type: LoadBalancer
