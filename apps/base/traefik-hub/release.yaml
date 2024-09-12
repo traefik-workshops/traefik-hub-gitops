@@ -24,6 +24,11 @@ spec:
       apimanagement:
         enabled: true
 
+    additionalArguments:
+      - "--providers.kubernetescrd.allowCrossNamespace=true"
+      - "--providers.kubernetesingress.allowexternalnameservices=true"
+      - "--providers.kubernetescrd.allowexternalnameservices=true"
+
     image:
       registry: ghcr.io
       repository: traefik/traefik-hub
@@ -34,16 +39,13 @@ spec:
       dashboard:
         enabled: true
 
+    ports:
+      web:
+        nodePort: 30000
+      websecure:
+        nodePort: 30001
+
     service:
       type: LoadBalancer
       # Needed on local Kind k8s cluster.
       # Can be removed or customized as needed on other k8s cluster.
-      ports:
-        - port: 80
-          name: web
-          targetPort: web
-          nodePort: 30000
-        - port: 443
-          name: websecure
-          targetPort: websecure
-          nodePort: 30001

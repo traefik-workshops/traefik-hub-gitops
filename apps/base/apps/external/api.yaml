@@ -1,3 +1,17 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: external-ingress-world-time
+  namespace: apps
+  annotations:
+    hub.traefik.io/api: world-time-api-external-name
+spec:
+  routes:
+    - match: Host(`api.docker.localhost`) && PathPrefix(`/world-time-api`)
+      kind: Rule
+      services:
+        - name: world-time-api
+          port: 443
 ---
 apiVersion: hub.traefik.io/v1alpha1
 kind: API
@@ -8,14 +22,24 @@ metadata:
     area: external
     external: name
 spec:
-  pathPrefix: /world-time-api
-  service:
-    openApiSpec:
-      url: https://worldtimeapi.org/api
-    name: world-time-api
-    port:
-      number: 443
+  openApiSpec:
+    url: https://worldtimeapi.org/api
 
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: external-ingress-httpbin
+  namespace: apps
+  annotations:
+    hub.traefik.io/api: httpbin-external-name
+spec:
+  routes:
+    - match: Host(`api.docker.localhost`) && PathPrefix(`/httpbin`)
+      kind: Rule
+      services:
+        - name: httpbin
+          port: 443
 ---
 apiVersion: hub.traefik.io/v1alpha1
 kind: API
@@ -26,40 +50,5 @@ metadata:
     area: external
     external: name
 spec:
-  pathPrefix: /httpbin
-  service:
-    openApiSpec:
-      url: https://httpbin.org/spec.json
-    name: httpbin
-    port:
-      number: 443
-  cors:
-    allowCredentials: true
-    allowHeaders:
-      - '*'
-    allowMethods:
-      - GET
-      - HEAD
-      - POST
-      - PUT
-      - PATCH
-      - DELETE
-      - CONNECT
-      - OPTIONS
-      #- TRACE
-    allowOriginList:
-      - '*'
-    maxAge: 0
-  headers:
-    request:
-      set:
-        "X-Request-Header": "Extra httpbin request header"
-        "X-Username": "Somebody"
-      delete:
-      - "Unnecessary-Request-Header"
-    response:
-      set:
-        "X-Response-Header": "Extra httpbin response header"
-        "X-API-Server": "Traefik Hub"
-      delete:
-      - "Secret-Response-Header"
+  openApiSpec:
+    url: https://httpbin.org/spec.json

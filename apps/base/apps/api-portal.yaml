@@ -6,7 +6,7 @@ metadata:
 spec:
   title: "Traefik Hub"
   description: "API Portal"
-  apiGateway: api-gateway
+  trustedUrls:
+    - "http://portal.docker.localhost"
   ui:
     logoUrl: https://doc.traefik.io/traefik-hub/img/traefik-hub-logo.svg
-  customDomains: []

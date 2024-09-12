@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: cors-headers-middleware
+spec:
+  headers:
+    customRequestHeaders:
+      "X-Request-Header": "Extra request header"
+      "X-Username": "Somebody"
+      "Unnecessary-Request-Header": ""
+
+    customResponseHeaders:
+      "X-Response-Header": "Extra response header"
+      "X-API-Server": "Traefik Hub"
+      "Secret-Response-Header": ""
+
+    accessControlAllowMethods:
+      - "GET"
+      - "HEAD"
+      - "POST"
+      - "PUT"
+      - "PATCH"
+      - "DELETE"
+      - "CONNECT"
+      - "OPTIONS"
+    #- TRACE
+    accessControlAllowHeaders:
+      - "*"
+    accessControlAllowOriginList:
+      - "*"
+    accessControlMaxAge: 0
+    addVaryHeader: true
