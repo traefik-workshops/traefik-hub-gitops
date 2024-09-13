@@ -100,6 +100,9 @@ Flux needs to be able to commit on the repository, this tutorial can only work o
 You will also need a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (PAT) with administration permissions.
 
 ```shell
+# Set default remote
+gh repo set-default IkennaConsulting/traefik-hub-gitops
+# Create fork
 gh repo fork --remote
 kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 ```
@@ -191,7 +194,7 @@ Create the `support` user:
 When the Kustomization is **ready**, you can open API Portal, following URL available in the UI or in the CRD:
 
 ```shell
-kubectl get apiportal
+kubectl get apiportal -n apps
 ```
 
 Log in to the API Portal:
@@ -224,8 +227,12 @@ By clicking on the left menu, you can access all dashboards:
 
 ## Enable event correlation
 
-**Flux events**: Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
-and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file.
+**Flux events**:
+
+- Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
+- Create a new Service Account with `Editor` role.
+- Add a Service account token and copy it to (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file.
+- **NOTE**: You will need to apply or commit this to the repo, if it is a public repo beware that the secret will be public.
 
 ```shell
 export GRAFANA_TOKEN="xxx"
