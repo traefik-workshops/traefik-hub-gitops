@@ -100,9 +100,6 @@ Flux needs to be able to commit on the repository, this tutorial can only work o
 You will also need a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) (PAT) with administration permissions.
 
 ```shell
-# Set default remote
-gh repo set-default IkennaConsulting/traefik-hub-gitops
-# Create fork
 gh repo fork --remote
 kubectl apply -f clusters/kind/flux-system/gotk-components.yaml
 ```
