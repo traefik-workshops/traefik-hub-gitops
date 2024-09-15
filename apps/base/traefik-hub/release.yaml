@@ -48,11 +48,12 @@ spec:
         port: 9100
 
     metrics:
+      prometheus: null
       otlp:
         enabled: true
         http:
           enabled: true
-          endpoint: "http://prometheus.monitoring:9090"
+          endpoint: "http://prometheus.monitoring:9090/api/v1/otlp/v1/metrics"
 
     service:
       type: LoadBalancer
