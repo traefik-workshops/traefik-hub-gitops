@@ -48,7 +48,8 @@ spec:
         port: 9100
 
     metrics:
-      prometheus: null
+      prometheus:
+        enabled: false
       otlp:
         enabled: true
         http:
