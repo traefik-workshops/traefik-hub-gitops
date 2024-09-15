@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: apps-cors-headers-middleware
+  name: cors-headers-middleware
 spec:
   headers:
     customRequestHeaders:

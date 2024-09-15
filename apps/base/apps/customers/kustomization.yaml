@@ -4,6 +4,7 @@ namespace: apps
 resources:
   - api.yaml
   - api-versioned.yaml
+  - cors-headers-middleware.yaml
   - spec.yaml
   - customer.yaml
   - customer-v2.yaml
