@@ -44,6 +44,15 @@ spec:
         nodePort: 30000
       websecure:
         nodePort: 30001
+      metrics:
+        port: 9100
+
+    metrics:
+      otlp:
+        enabled: true
+        http:
+          enabled: true
+          endpoint: "http://prometheus.monitoring:9090/api/v1/otlp/v1/metrics"
 
     service:
       type: LoadBalancer
