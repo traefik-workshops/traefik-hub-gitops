@@ -46,7 +46,7 @@ spec:
       initContainers:
         - name: get-gw-url
           image: alpine/k8s:1.27.7
-          command: [ "sh", "-c", "kubectl get apigateways.hub.traefik.io api-gateway -o template --template '{{ .status.hubDomain }}' > /var/shared/apigw" ]
+          command: [ "sh", "-c", "echo 'api.docker.localhost' > /var/shared/apigw" ]
           volumeMounts:
             - mountPath: /var/shared
               name: shared
@@ -95,7 +95,7 @@ spec:
       initContainers:
         - name: get-gw-url
           image: alpine/k8s:1.27.7
-          command: [ "sh", "-c", "kubectl get apigateways.hub.traefik.io api-gateway -o template --template '{{ .status.hubDomain }}' > /var/shared/apigw" ]
+          command: [ "sh", "-c", "echo 'api.docker.localhost' > /var/shared/apigw" ]
           volumeMounts:
             - mountPath: /var/shared
               name: shared
