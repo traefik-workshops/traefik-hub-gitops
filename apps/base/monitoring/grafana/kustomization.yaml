@@ -11,10 +11,7 @@ resources:
 configMapGenerator:
   - behavior: create
     files:
-      - grafana-dashboards/hub/api-management.json
-      - grafana-dashboards/hub/api.json
-      - grafana-dashboards/hub/hub-dashboard.json
-      - grafana-dashboards/hub/users.json
+      - grafana-dashboards/hub/traefik-standalone.json
     name: grafana-hub-dashboards
     namespace: monitoring
   - behavior: create

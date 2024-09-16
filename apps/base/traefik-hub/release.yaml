@@ -8,32 +8,54 @@ spec:
   releaseName: traefik-hub
   chart:
     spec:
-      chart: traefik-hub
-      version: v4.0.0
+      chart: traefik
       sourceRef:
         kind: HelmRepository
         name: traefik-hub
   interval: 50m
   install:
     remediation:
-      retries: 3
+      retries: 15
   upgrade:
     crds: CreateReplace
   values:
+    hub:
+      token: hub-agent-token
+      apimanagement:
+        enabled: true
+
     additionalArguments:
-      - --hub.metrics.opentelemetry.insecure
-      - --hub.metrics.opentelemetry.address=prometheus.monitoring:9090
-      - --hub.metrics.opentelemetry.path=/api/v1/otlp/v1/metrics
+      - "--providers.kubernetescrd.allowCrossNamespace=true"
+      - "--providers.kubernetesingress.allowexternalnameservices=true"
+      - "--providers.kubernetescrd.allowexternalnameservices=true"
+
+    image:
+      registry: ghcr.io
+      repository: traefik/traefik-hub
+      tag: v3.4.0
+      pullPolicy: Always
+
+    ingressRoute:
+      dashboard:
+        enabled: true
+
+    ports:
+      web:
+        nodePort: 30000
+      websecure:
+        nodePort: 30001
+      metrics:
+        port: 9100
+
+    metrics:
+      prometheus: null
+      otlp:
+        enabled: true
+        http:
+          enabled: true
+          endpoint: "http://prometheus.monitoring:9090/api/v1/otlp/v1/metrics"
+
     service:
       type: LoadBalancer
       # Needed on local Kind k8s cluster.
       # Can be removed or customized as needed on other k8s cluster.
-      ports:
-        - port: 80
-          name: web
-          targetPort: web
-          nodePort: 30000
-        - port: 443
-          name: websecure
-          targetPort: websecure
-          nodePort: 30001

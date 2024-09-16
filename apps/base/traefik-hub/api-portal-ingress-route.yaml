@@ -1,0 +1,13 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portal-ingress
+  annotations:
+    hub.traefik.io/api-portal: api-portal@apps
+spec:
+  routes:
+    - match: Host(`portal.docker.localhost`)
+      kind: Rule
+      services:
+        - name: apiportal
+          port: 9903

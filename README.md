@@ -162,6 +162,13 @@ flux get ks
 
 ![Kustomizations are ready](./images/kustomizations-ready.png)
 
+If any of the kustomizations are stuck just run the:
+
+```bash
+kubectl delete mutatingwebhookconfigurations hub-api
+kubectl delete mutatingwebhookconfigurations hub-acp
+```
+
 # Configure traffic generation
 
 To generate traffic, create two users, an `admin` and a `support` user and their groups.
@@ -184,7 +191,7 @@ Create the `support` user:
 When the Kustomization is **ready**, you can open API Portal, following URL available in the UI or in the CRD:
 
 ```shell
-kubectl get apiportal
+kubectl get apiportal -n apps
 ```
 
 Log in to the API Portal:
@@ -217,8 +224,12 @@ By clicking on the left menu, you can access all dashboards:
 
 ## Enable event correlation
 
-**Flux events**: Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
-and add the token (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file.
+**Flux events**:
+
+- Add a new Grafana service account with a new key at http://grafana.docker.localhost/org/serviceaccounts
+- Create a new Service Account with `Editor` role.
+- Add a Service account token and copy it to (starting with `glsa_`) to the `apps/base/monitoring/flux-grafana.yaml` file.
+- **NOTE**: You will need to apply or commit this to the repo, if it is a public repo beware that the secret will be public.
 
 ```shell
 export GRAFANA_TOKEN="xxx"
